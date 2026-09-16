@@ -1,86 +1,153 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const lista = document.querySelector(".obrigacoes__lista");
-    const filtros = document.querySelectorAll(".filtros__item");
+// Meu MEI / Obrigações: lista completa vinda de /api/obrigacoes, com os filtros
+// "Todas / Pendentes / Concluídas" funcionando de verdade (client-side, sem recarregar).
 
-    let obrigacoes = [];
-    let filtroAtual = "todas";
+const ICONE_POR_OBRIGACAO = {
+    1: "../Assets/DasMensal.svg",
+    2: "../Assets/CalendarioSimples.svg",
+};
 
-    function renderizar() {
-        lista.innerHTML = "";
+const ICONE_PADRAO = "../Assets/Documentos.svg";
 
-        const filtradas = obrigacoes.filter(obrigacao => {
-            const status = String(obrigacao.status || "").toLowerCase();
+// Os selos existentes no CSS desta página são só "ok" e "pendente"
+const SELO_POR_STATUS = {
+    "Em dia": { classe: "selo--ok", texto: "Em dia" },
+    "Concluida": { classe: "selo--ok", texto: "Concluída" },
+    "Pendente": { classe: "selo--pendente", texto: "Pendente" },
+};
 
-            if (filtroAtual === "pendentes") {
-                return status !== "concluida";
-            }
+let todasAsObrigacoes = [];
+let filtroAtual = "todas";
 
-            if (filtroAtual === "concluidas") {
-                return status === "concluida";
-            }
 
-            return true;
+function converterDataBr(data) {
+    const [dia, mes, ano] = data.split("/").map(Number);
+    return new Date(ano, mes - 1, dia);
+}
+
+
+function obrigacoesFiltradas() {
+    if (filtroAtual === "pendentes") {
+        return todasAsObrigacoes.filter((o) => o.status !== "Concluida");
+    }
+
+    if (filtroAtual === "concluidas") {
+        return todasAsObrigacoes.filter((o) => o.status === "Concluida");
+    }
+
+    return todasAsObrigacoes;
+}
+
+
+function criarCardDeObrigacao(obrigacao) {
+    const article = document.createElement("article");
+    article.className = "obrigacao";
+
+    const icone = document.createElement("img");
+    icone.className = "obrigacao__icone";
+    icone.src = ICONE_POR_OBRIGACAO[obrigacao.id_obrigacao] || ICONE_PADRAO;
+
+    const conteudo = document.createElement("div");
+    conteudo.className = "obrigacao__conteudo";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = obrigacao.titulo;
+
+    const rotulo = document.createElement("p");
+    rotulo.className = "obrigacao__rotulo";
+    rotulo.textContent = "Vencimento";
+
+    const data = document.createElement("p");
+    data.className = "obrigacao__data";
+    data.textContent = obrigacao.vencimento;
+
+    const detalhe = document.createElement("p");
+    detalhe.className = "obrigacao__detalhe";
+    detalhe.textContent = obrigacao.descricao;
+
+    const acao = document.createElement("a");
+    acao.className = "obrigacao__acao";
+    acao.href = obrigacao.link || "#";
+    acao.target = "_blank";
+    acao.rel = "noopener";
+
+    const seta = document.createElement("img");
+    seta.src = "../Assets/Chevron.svg";
+
+    acao.append(document.createTextNode("Saiba mais "), seta);
+
+    conteudo.append(titulo, rotulo, data, detalhe, acao);
+
+    const selo = document.createElement("span");
+    const infoSelo = SELO_POR_STATUS[obrigacao.status] || { classe: "selo--pendente", texto: obrigacao.status };
+    selo.className = `selo ${infoSelo.classe}`;
+    selo.textContent = infoSelo.texto;
+
+    article.append(icone, conteudo, selo);
+
+    return article;
+}
+
+
+function renderizarLista() {
+    const lista = document.getElementById("lista-obrigacoes");
+    const obrigacoes = obrigacoesFiltradas();
+
+    lista.textContent = "";
+
+    if (obrigacoes.length === 0) {
+        const mensagens = {
+            pendentes: "Nenhuma obrigação pendente. Tudo em dia!",
+            concluidas: "Nenhuma obrigação concluída ainda.",
+            todas: "Nenhuma obrigação cadastrada.",
+        };
+
+        lista.textContent = mensagens[filtroAtual];
+        return;
+    }
+
+    obrigacoes
+        .slice()
+        .sort((a, b) => converterDataBr(a.vencimento) - converterDataBr(b.vencimento))
+        .forEach((obrigacao) => {
+            lista.appendChild(criarCardDeObrigacao(obrigacao));
         });
+}
 
-        if (!filtradas.length) {
-            lista.innerHTML = "<p>Nenhuma obrigação encontrada.</p>";
+
+function selecionarFiltro(botaoClicado) {
+    filtroAtual = botaoClicado.dataset.filtro;
+
+    document.querySelectorAll(".filtros__item").forEach((botao) => {
+        botao.classList.toggle("filtros__item--ativo", botao === botaoClicado);
+    });
+
+    renderizarLista();
+}
+
+
+document.querySelectorAll(".filtros__item").forEach((botao) => {
+    botao.addEventListener("click", () => selecionarFiltro(botao));
+});
+
+
+async function carregarObrigacoes() {
+    const lista = document.getElementById("lista-obrigacoes");
+
+    try {
+        const resposta = await apiFetch("/api/obrigacoes");
+
+        if (!resposta.ok) {
+            lista.textContent = "Não foi possível carregar suas obrigações agora.";
             return;
         }
 
-        filtradas.forEach(obrigacao => {
-            const artigo = document.createElement("article");
-            artigo.className = "obrigacao";
-
-            const concluida = String(obrigacao.status || "").toLowerCase() === "concluida";
-            artigo.innerHTML = `
-                <div class="obrigacao__conteudo">
-                    <h2></h2>
-                    <p class="obrigacao__rotulo">Próximo vencimento</p>
-                    <p class="obrigacao__data"></p>
-                    <p class="obrigacao__detalhe"></p>
-                    <a class="obrigacao__acao" target="_blank" rel="noopener">
-                        ${concluida ? "Ver detalhes" : "Ver como emitir"} <span>›</span>
-                    </a>
-                </div>
-                <span class="selo ${concluida ? "selo--ok" : "selo--pendente"}"></span>
-            `;
-
-            artigo.querySelector("h2").textContent = obrigacao.titulo;
-            artigo.querySelector(".obrigacao__data").textContent = obrigacao.vencimento;
-            artigo.querySelector(".obrigacao__detalhe").textContent = obrigacao.descricao;
-            artigo.querySelector(".selo").textContent = obrigacao.status;
-
-            const link = artigo.querySelector("a");
-            link.href = obrigacao.link || "#";
-
-            lista.appendChild(artigo);
-        });
-    }
-
-    filtros.forEach(filtro => {
-        filtro.addEventListener("click", event => {
-            event.preventDefault();
-            filtroAtual = filtro.textContent.trim().toLowerCase();
-
-            filtros.forEach(item => item.classList.remove("filtros__item--ativo"));
-            filtro.classList.add("filtros__item--ativo");
-
-            renderizar();
-        });
-    });
-
-    try {
-        const response = await apiFetch("/api/obrigacoes");
-        const dados = await response.json();
-
-        if (!response.ok) {
-            throw new Error(dados.erro || "Não foi possível carregar as obrigações.");
-        }
-
-        obrigacoes = Object.values(dados);
-        renderizar();
+        todasAsObrigacoes = Object.values(await resposta.json());
+        renderizarLista();
     } catch (erro) {
         console.error("Erro ao carregar obrigações:", erro);
-        lista.innerHTML = "<p>Não foi possível carregar suas obrigações.</p>";
+        lista.textContent = "Não foi possível carregar suas obrigações agora.";
     }
-});
+}
+
+
+carregarObrigacoes();

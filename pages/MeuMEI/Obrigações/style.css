@@ -22,12 +22,16 @@
 
 .filtros__item {
 	flex: 1;
+	border: 0;
+	background: none;
 	border-radius: 19px;
+	font-family: inherit;
 	font-size: 13.17px;
 	font-weight: 500;
 	line-height: 34px;
 	color: rgba(0, 0, 0, 0.75);
 	text-align: center;
+	cursor: pointer;
 	transition: 0.2s ease-in;
 }
 

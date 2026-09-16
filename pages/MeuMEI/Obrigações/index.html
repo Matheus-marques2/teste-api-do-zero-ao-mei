@@ -20,49 +20,13 @@
         <div id="navbar"></div>
 
         <nav class="filtros">
-            <a class="filtros__item filtros__item--ativo" href="#">Todas</a>
-            <a class="filtros__item" href="#">Pendentes</a>
-            <a class="filtros__item" href="#">Concluídas</a>
+            <button type="button" class="filtros__item filtros__item--ativo" data-filtro="todas">Todas</button>
+            <button type="button" class="filtros__item" data-filtro="pendentes">Pendentes</button>
+            <button type="button" class="filtros__item" data-filtro="concluidas">Concluídas</button>
         </nav>
 
-        <section class="obrigacoes__lista">
-            <article class="obrigacao">
-                <img class="obrigacao__icone" src="../Assets/DasMensal.svg" alt="">
-
-                <div class="obrigacao__conteudo">
-                    <h2>DAS mensal</h2>
-
-                    <p class="obrigacao__rotulo">Próximo vencimento</p>
-                    <p class="obrigacao__data">20/09/2026</p>
-                    <p class="obrigacao__detalhe">Pagamento mensal do MEI.</p>
-
-                    <a class="obrigacao__acao" href="#">
-                        Ver como emitir
-                        <img src="../Assets/Chevron.svg" alt="">
-                    </a>
-                </div>
-
-                <span class="selo selo--ok">Em dia</span>
-            </article>
-
-            <article class="obrigacao">
-                <img class="obrigacao__icone" src="../Assets/CalendarioSimples.svg" alt="">
-
-                <div class="obrigacao__conteudo">
-                    <h2>Declaração Anual</h2>
-
-                    <p class="obrigacao__rotulo">Prazo para entrega</p>
-                    <p class="obrigacao__data">31/05/2027</p>
-                    <p class="obrigacao__detalhe">Declaração anual do MEI (DASN-SIMEI)</p>
-
-                    <a class="obrigacao__acao" href="#">
-                        Ver como emitir
-                        <img src="../Assets/Chevron.svg" alt="">
-                    </a>
-                </div>
-
-                <span class="selo selo--pendente">Pendente</span>
-            </article>
+        <section class="obrigacoes__lista" id="lista-obrigacoes">
+            <p id="obrigacoes-carregando">Carregando obrigações...</p>
         </section>
     </main>
 
@@ -72,6 +36,8 @@
 
   <!-- Menu lateral (abre pelo ícone de filtro) -->
   <script src="../../../shared/components/Menu/script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 
 <script src="../../../shared/components/MeuMeiNavBar/script.js"></script>
