@@ -3,16 +3,16 @@
 
 <head>
     <script src="../../../shared/scripts/api.js" data-protegida></script>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../shared/styles/reset.css">
     <link rel="stylesheet" href="../../../shared/styles/global.css">
     <link rel="stylesheet" href="../../../shared/components/FinanceiroNavBar/style.css">
     <link rel="stylesheet" href="./style.css">
     <title>Despesas</title>
-  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
-  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
-  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+    <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+    <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+    <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
 </head>
 
 <body>
@@ -34,10 +34,10 @@
                  O traço começa às 9h e cresce no sentido horário. -->
             <figure class="rosca">
                 <svg viewBox="0 0 197 184" role="img" aria-label="54% de entradas e 46% de saídas">
-                    <circle class="rosca__fatia rosca__fatia--entradas" cx="98.5" cy="92" r="85.5"
-                        pathLength="100" stroke-dasharray="54 46" stroke-dashoffset="0"></circle>
-                    <circle class="rosca__fatia rosca__fatia--saidas" cx="98.5" cy="92" r="85.5"
-                        pathLength="100" stroke-dasharray="46 54" stroke-dashoffset="-54"></circle>
+                    <circle class="rosca__fatia rosca__fatia--entradas" cx="98.5" cy="92" r="85.5" pathLength="100"
+                        stroke-dasharray="54 46" stroke-dashoffset="0"></circle>
+                    <circle class="rosca__fatia rosca__fatia--saidas" cx="98.5" cy="92" r="85.5" pathLength="100"
+                        stroke-dasharray="46 54" stroke-dashoffset="-54"></circle>
                 </svg>
 
                 <figcaption class="rosca__total">R$8.350,00</figcaption>
@@ -100,63 +100,74 @@
             </div>
         </section>
 
-        <section class="financeiro__detalhes">
-            <div class="detalhes__topo">
-                <h2>Detalhes:</h2>
+        <div class="detalhes__topo">
+            <h2>Detalhes:</h2>
 
-                <button class="detalhes__adicionar">
-                    <img src="../Assets/Plus.svg" alt="Adicionar lançamento">
-                </button>
-            </div>
+            <button class="detalhes__adicionar" id="btn-adicionar-despesa" type="button">
+                <img src="../Assets/Plus.svg" alt="Adicionar lançamento">
+            </button>
+        </div>
 
-            <article class="lancamento">
-                <img class="lancamento__seta" src="../Assets/SetaEntrada.svg" alt="Entrada">
-                <h3 class="lancamento__nome">Lucas Leite</h3>
-                <p class="lancamento__valor lancamento__valor--entrada">+R$546,00</p>
+        <form id="form-despesa" class="form-despesa" hidden>
+            <input id="descricao-despesa" type="text" placeholder="Descrição" required>
 
-                <button class="lancamento__excluir">
-                    <img src="../Assets/Trash.svg" alt="Excluir lançamento">
-                </button>
-            </article>
+            <input id="valor-despesa" type="number" step="0.01" min="0.01" placeholder="Valor" required>
 
-            <article class="lancamento">
-                <img class="lancamento__seta" src="../Assets/SetaEntrada.svg" alt="Entrada">
-                <h3 class="lancamento__nome">João Vitor Jacaré</h3>
-                <p class="lancamento__valor lancamento__valor--entrada">+R$742,00</p>
+            <input id="data-despesa" type="date" required>
 
-                <button class="lancamento__excluir">
-                    <img src="../Assets/Trash.svg" alt="Excluir lançamento">
-                </button>
-            </article>
+            <button type="submit">
+                Adicionar
+            </button>
+        </form>
 
-            <article class="lancamento">
-                <img class="lancamento__seta" src="../Assets/SetaSaida.svg" alt="Saída">
-                <h3 class="lancamento__nome">Uber do brasil Ltda</h3>
-                <p class="lancamento__valor lancamento__valor--saida">-R$ 120,00</p>
+        <article class="lancamento">
+            <img class="lancamento__seta" src="../Assets/SetaEntrada.svg" alt="Entrada">
+            <h3 class="lancamento__nome">Lucas Leite</h3>
+            <p class="lancamento__valor lancamento__valor--entrada">+R$546,00</p>
 
-                <button class="lancamento__excluir">
-                    <img src="../Assets/Trash.svg" alt="Excluir lançamento">
-                </button>
-            </article>
+            <button class="lancamento__excluir">
+                <img src="../Assets/Trash.svg" alt="Excluir lançamento">
+            </button>
+        </article>
 
-            <article class="lancamento">
-                <img class="lancamento__seta" src="../Assets/SetaSaida.svg" alt="Saída">
-                <h3 class="lancamento__nome">Mercado Geral Ltda</h3>
-                <p class="lancamento__valor lancamento__valor--saida">-R$ 172,00</p>
+        <article class="lancamento">
+            <img class="lancamento__seta" src="../Assets/SetaEntrada.svg" alt="Entrada">
+            <h3 class="lancamento__nome">João Vitor Jacaré</h3>
+            <p class="lancamento__valor lancamento__valor--entrada">+R$742,00</p>
 
-                <button class="lancamento__excluir">
-                    <img src="../Assets/Trash.svg" alt="Excluir lançamento">
-                </button>
-            </article>
+            <button class="lancamento__excluir">
+                <img src="../Assets/Trash.svg" alt="Excluir lançamento">
+            </button>
+        </article>
+
+        <article class="lancamento">
+            <img class="lancamento__seta" src="../Assets/SetaSaida.svg" alt="Saída">
+            <h3 class="lancamento__nome">Uber do brasil Ltda</h3>
+            <p class="lancamento__valor lancamento__valor--saida">-R$ 120,00</p>
+
+            <button class="lancamento__excluir">
+                <img src="../Assets/Trash.svg" alt="Excluir lançamento">
+            </button>
+        </article>
+
+        <article class="lancamento">
+            <img class="lancamento__seta" src="../Assets/SetaSaida.svg" alt="Saída">
+            <h3 class="lancamento__nome">Mercado Geral Ltda</h3>
+            <p class="lancamento__valor lancamento__valor--saida">-R$ 172,00</p>
+
+            <button class="lancamento__excluir">
+                <img src="../Assets/Trash.svg" alt="Excluir lançamento">
+            </button>
+        </article>
         </section>
     </main>
 
-  <!-- Navbar global (rodapé) -->
-  <div id="navbar-global"></div>
-  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+    <!-- Navbar global (rodapé) -->
+    <div id="navbar-global"></div>
+    <script src="../../../shared/components/NavBarGlobal/script.js"></script>
 
-  <!-- Menu lateral (abre pelo ícone de filtro) -->
-  <script src="../../../shared/components/Menu/script.js"></script>
+    <!-- Menu lateral (abre pelo ícone de filtro) -->
+    <script src="../../../shared/components/Menu/script.js"></script>
 </body>
 
 <script src="../../../shared/components/FinanceiroNavBar/script.js"></script>
