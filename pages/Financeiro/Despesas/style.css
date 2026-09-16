@@ -325,8 +325,8 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	margin: 10px 0 10px 3px;
-	padding: 12px;
+	margin: 10px 0;
+	padding: 10px;
 	border-radius: 8px;
 	background-color: #F4EFEB;
 }
@@ -358,8 +358,8 @@
 	border: none;
 	border-radius: 5px;
 	background-color: #8E292D;
+	color: white;
 	font-family: poppins, sans-serif;
 	font-size: 11px;
-	color: #ffffff;
 	cursor: pointer;
 }

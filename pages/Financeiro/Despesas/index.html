@@ -100,25 +100,37 @@
             </div>
         </section>
 
-        <div class="detalhes__topo">
-            <h2>Detalhes:</h2>
+        <section class="financeiro__detalhes">
 
-            <button class="detalhes__adicionar" id="btn-adicionar-despesa" type="button">
-                <img src="../Assets/Plus.svg" alt="Adicionar lançamento">
-            </button>
-        </div>
+            <div class="detalhes__topo">
+                <h2>Detalhes:</h2>
 
-        <form id="form-despesa" class="form-despesa" hidden>
-            <input id="descricao-despesa" type="text" placeholder="Descrição" required>
+                <button class="detalhes__adicionar" id="btn-adicionar-despesa" type="button">
+                    <img src="../Assets/Plus.svg" alt="Adicionar lançamento">
+                </button>
+            </div>
 
-            <input id="valor-despesa" type="number" step="0.01" min="0.01" placeholder="Valor" required>
 
-            <input id="data-despesa" type="date" required>
+            <form id="form-despesa" class="form-despesa" hidden>
 
-            <button type="submit">
-                Adicionar
-            </button>
-        </form>
+                <input id="descricao-despesa" type="text" placeholder="Descrição" required>
+
+                <input id="valor-despesa" type="number" step="0.01" min="0.01" placeholder="Valor" required>
+
+                <input id="data-despesa" type="date" required>
+
+                <button type="submit">
+                    Adicionar
+                </button>
+
+            </form>
+
+
+            <div id="lista-despesas">
+
+            </div>
+
+        </section>
 
         <article class="lancamento">
             <img class="lancamento__seta" src="../Assets/SetaEntrada.svg" alt="Entrada">
