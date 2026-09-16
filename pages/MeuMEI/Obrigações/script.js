@@ -77,14 +77,52 @@ function criarCardDeObrigacao(obrigacao) {
 
     conteudo.append(titulo, rotulo, data, detalhe, acao);
 
-    const selo = document.createElement("span");
+    const selo = document.createElement("button");
+    selo.type = "button";
     const infoSelo = SELO_POR_STATUS[obrigacao.status] || { classe: "selo--pendente", texto: obrigacao.status };
     selo.className = `selo ${infoSelo.classe}`;
     selo.textContent = infoSelo.texto;
+    selo.title = obrigacao.status === "Concluida"
+        ? "Clique para voltar para pendente"
+        : "Clique para marcar como concluída";
+    selo.addEventListener("click", () => alternarStatusObrigacao(obrigacao, selo));
 
     article.append(icone, conteudo, selo);
 
     return article;
+}
+
+
+async function alternarStatusObrigacao(obrigacao, botaoSelo) {
+    const statusAnterior = obrigacao.status;
+    const novoStatus = statusAnterior === "Concluida" ? "Pendente" : "Concluida";
+
+    botaoSelo.disabled = true;
+    botaoSelo.textContent = "Salvando...";
+
+    try {
+        const resposta = await apiFetch(`/api/obrigacoes/${obrigacao.id_obrigacao}`, {
+            method: "PUT",
+            body: { status: novoStatus },
+        });
+
+        const resultado = await resposta.json();
+
+        if (!resposta.ok || !resultado.sucesso) {
+            alert(resultado.erro || "Não foi possível atualizar o status agora.");
+            botaoSelo.textContent = (SELO_POR_STATUS[statusAnterior] || { texto: statusAnterior }).texto;
+            return;
+        }
+
+        obrigacao.status = novoStatus;
+        renderizarLista();
+    } catch (erro) {
+        console.error("Erro ao atualizar status da obrigação:", erro);
+        alert("Não foi possível atualizar o status. Verifique sua internet.");
+        botaoSelo.textContent = (SELO_POR_STATUS[statusAnterior] || { texto: statusAnterior }).texto;
+    } finally {
+        botaoSelo.disabled = false;
+    }
 }
 
 
