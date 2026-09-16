@@ -1,0 +1,14 @@
+{
+  "name": "zerotomei-api",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2"
+  }
+}
