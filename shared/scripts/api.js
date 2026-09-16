@@ -21,7 +21,7 @@
 
 // >>> Cole aqui a URL da API publicada (Render/Railway/etc), sem a barra no final. <<<
 // Ex.: const API_URL_PRODUCAO = "https://zerotomei-api.onrender.com";
-const API_URL_PRODUCAO = "";
+const API_URL_PRODUCAO = "https://zerotomei-api.onrender.com";
 
 const CHAVE_API_URL = "zerotomei:api-url";
 
