@@ -32,7 +32,7 @@
                 <p class="negocio__situacao">Situação: <span id="negocio-situacao">—</span></p>
             </div>
 
-            <a class="negocio__acao" href="#">Ver informações</a>
+            <button type="button" class="negocio__acao" id="btn-editar-negocio">Ver informações</button>
         </section>
 
         <section class="obrigacoes">
@@ -101,6 +101,40 @@
             </div>
         </section>
     </main>
+
+    <!-- Janela para editar os dados do negócio (aberta pelo botão "Ver informações") -->
+    <div class="modal-overlay" id="modal-negocio" hidden>
+        <div class="modal-negocio" role="dialog" aria-modal="true" aria-labelledby="modal-negocio-titulo">
+            <div class="modal-negocio__topo">
+                <h2 id="modal-negocio-titulo">Meu negócio</h2>
+                <button type="button" class="modal-negocio__fechar" id="btn-fechar-negocio" aria-label="Fechar">&times;</button>
+            </div>
+
+            <form id="form-negocio" novalidate>
+                <label class="modal-negocio__campo">
+                    Nome do negócio
+                    <input type="text" name="nome_negocio" id="campo-nome-negocio" maxlength="80" placeholder="Ex.: MercaFácil" required />
+                </label>
+
+                <label class="modal-negocio__campo">
+                    CNPJ
+                    <input type="text" name="cnpj" id="campo-cnpj" maxlength="18" placeholder="00.000.000/0001-00" required />
+                </label>
+
+                <label class="modal-negocio__campo">
+                    Situação
+                    <input type="text" name="situacao" id="campo-situacao" maxlength="40" placeholder="Ex.: Mei Ativo" required />
+                </label>
+
+                <p class="modal-negocio__mensagem" id="modal-negocio-mensagem" role="status"></p>
+
+                <div class="modal-negocio__acoes">
+                    <button type="button" class="modal-negocio__cancelar" id="btn-cancelar-negocio">Cancelar</button>
+                    <button type="submit" class="modal-negocio__salvar" id="btn-salvar-negocio">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
   <!-- Navbar global (rodapé) -->
   <div id="navbar-global"></div>

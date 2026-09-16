@@ -86,10 +86,12 @@
 	border: 0.94px solid #8E292D;
 	border-radius: 7.53px;
 	background-color: #FDFDFD;
+	font-family: inherit;
 	font-size: 13.17px;
 	font-weight: 400;
 	color: #8E292D;
 	text-align: center;
+	cursor: pointer;
 	transition: 0.2s ease-in;
 }
 
@@ -274,4 +276,161 @@
 	width: 14px;
 	height: 14px;
 	margin-left: auto;
+}
+
+/* ================= Janela "Meu negócio" ================= */
+
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 1002;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: rgba(30, 20, 20, 0.45);
+	animation: modal-negocio-esmaecer 0.18s ease-out;
+}
+
+.modal-overlay[hidden] {
+	display: none;
+}
+
+@keyframes modal-negocio-esmaecer {
+	from { opacity: 0; }
+}
+
+.modal-negocio {
+	width: 100%;
+	max-width: 340px;
+	max-height: calc(100vh - 40px);
+	overflow-y: auto;
+	box-sizing: border-box;
+	padding: 22px 20px 20px;
+	background-color: #FDFDFD;
+	border-radius: 14px;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+	font-family: "Poppins", sans-serif;
+	animation: modal-negocio-entrar 0.2s ease-out;
+}
+
+@keyframes modal-negocio-entrar {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.98);
+	}
+}
+
+.modal-negocio__topo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16px;
+}
+
+.modal-negocio__topo h2 {
+	font-size: 17px;
+	font-weight: 600;
+	color: #1a1a1a;
+}
+
+.modal-negocio__fechar {
+	border: 0;
+	background: none;
+	font-size: 22px;
+	line-height: 1;
+	color: #8E292D;
+	cursor: pointer;
+	padding: 4px 6px;
+}
+
+.modal-negocio__campo {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-bottom: 14px;
+	font-size: 12.5px;
+	font-weight: 500;
+	color: #4a4a4a;
+}
+
+.modal-negocio__campo input {
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px 12px;
+	border: 1px solid rgba(142, 41, 45, 0.25);
+	border-radius: 8px;
+	background-color: #FFFFFF;
+	color: #1a1a1a;
+	outline: none;
+	transition: border-color 0.15s ease-in;
+}
+
+.modal-negocio__campo input:focus {
+	border-color: #8E292D;
+}
+
+.modal-negocio__campo input:invalid:not(:placeholder-shown) {
+	border-color: #b3261e;
+}
+
+.modal-negocio__mensagem {
+	min-height: 16px;
+	margin-bottom: 10px;
+	font-size: 12.5px;
+	color: #8E292D;
+}
+
+.modal-negocio__mensagem[data-tipo="sucesso"] {
+	color: #2e7d32;
+}
+
+.modal-negocio__acoes {
+	display: flex;
+	gap: 10px;
+}
+
+.modal-negocio__cancelar,
+.modal-negocio__salvar {
+	flex: 1;
+	padding: 10px 0;
+	border-radius: 7.53px;
+	font-family: inherit;
+	font-size: 13.5px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: 0.2s ease-in;
+}
+
+.modal-negocio__cancelar {
+	border: 0.94px solid #8E292D;
+	background-color: #FDFDFD;
+	color: #8E292D;
+}
+
+.modal-negocio__cancelar:hover {
+	background-color: #f4e8e8;
+}
+
+.modal-negocio__salvar {
+	border: 0.94px solid #8E292D;
+	background-color: #8E292D;
+	color: #FDFDFD;
+}
+
+.modal-negocio__salvar:hover {
+	background-color: #741f23;
+}
+
+.modal-negocio__salvar:disabled,
+.modal-negocio__cancelar:disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.modal-overlay,
+	.modal-negocio {
+		animation: none;
+	}
 }
