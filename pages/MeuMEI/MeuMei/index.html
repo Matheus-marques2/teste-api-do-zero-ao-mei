@@ -27,9 +27,9 @@
             <div class="negocio__dados">
                 <h2>Meu negócio</h2>
 
-                <p>Evellyn Gomes</p>
-                <p>CNPJ: 00.000.000/0001-00</p>
-                <p class="negocio__situacao">Situação: <span>Mei Ativo</span></p>
+                <p id="negocio-dono">Carregando...</p>
+                <p id="negocio-cnpj">CNPJ: —</p>
+                <p class="negocio__situacao">Situação: <span id="negocio-situacao">—</span></p>
             </div>
 
             <a class="negocio__acao" href="#">Ver informações</a>
@@ -42,43 +42,8 @@
                 <a href="../Obrigações/index.html">Ver todos</a>
             </header>
 
-            <div class="obrigacoes__lista">
-                <article class="resumo">
-                    <div class="resumo__topo">
-                        <img class="resumo__icone" src="../Assets/DasMensal.svg" alt="">
-
-                        <span class="selo selo--ok">Em dia</span>
-                    </div>
-
-                    <h3>DAS mensal</h3>
-
-                    <p class="resumo__rotulo">Próximo vencimento</p>
-                    <p class="resumo__data">20/09/2026</p>
-
-                    <a class="resumo__acao" href="#">
-                        Ver como emitir
-                        <img src="../Assets/Chevron.svg" alt="">
-                    </a>
-                </article>
-
-                <article class="resumo">
-                    <div class="resumo__topo">
-                        <img class="resumo__icone" src="../Assets/CalendarioSimples.svg" alt="">
-
-                        <span class="selo selo--atencao">Atenção</span>
-                    </div>
-
-                    <h3>Declaração Anual</h3>
-                    <p class="resumo__sigla">(DASN-SIMEI)</p>
-
-                    <p class="resumo__rotulo">Prazo para entrega</p>
-                    <p class="resumo__data">31/05/2027</p>
-
-                    <a class="resumo__acao" href="#">
-                        Saiba mais
-                        <img src="../Assets/Chevron.svg" alt="">
-                    </a>
-                </article>
+            <div class="obrigacoes__lista" id="lista-obrigacoes">
+                <p id="obrigacoes-carregando">Carregando obrigações...</p>
             </div>
         </section>
 
@@ -143,6 +108,8 @@
 
   <!-- Menu lateral (abre pelo ícone de filtro) -->
   <script src="../../../shared/components/Menu/script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 
 <script src="../../../shared/components/MeuMeiNavBar/script.js"></script>
