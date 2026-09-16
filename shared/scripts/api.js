@@ -10,12 +10,63 @@
 // Se a API Node (api/server.js) não estiver no ar, as rotas são atendidas pelo "modo local":
 // os dados vêm de api/db.json e as alterações ficam salvas no localStorage deste navegador.
 
-// Preencha com a URL da API publicada (ex.: Render/Railway) para usar a API real no GitHub Pages.
+// ================== Endereço da API =======================
+// Ordem de prioridade (o primeiro que existir ganha):
+//   1. ?api=https://minha-api.com na URL  -> fica salvo neste navegador (bom pra testar sem dar deploy).
+//      Use ?api= (vazio) pra apagar e voltar ao padrão.
+//   2. <meta name="zerotomei-api" content="https://minha-api.com"> no <head> da página.
+//   3. A constante API_URL_PRODUCAO aqui embaixo (é o lugar definitivo: commitou, todo mundo usa).
+//   4. localhost / porta 3000 -> a própria API local (npm start dentro de api/).
+// Se nada disso existir, o app cai no MODO LOCAL (api/db.json + localStorage deste navegador).
+
+// >>> Cole aqui a URL da API publicada (Render/Railway/etc), sem a barra no final. <<<
+// Ex.: const API_URL_PRODUCAO = "https://zerotomei-api.onrender.com";
 const API_URL_PRODUCAO = "";
+
+const CHAVE_API_URL = "zerotomei:api-url";
 
 const emDesenvolvimento = ["localhost", "127.0.0.1"].includes(location.hostname);
 
+
+function semBarraFinal(url) {
+    return url.trim().replace(/\/+$/, "");
+}
+
+
+// ?api=... grava a URL neste navegador; ?api= (vazio) apaga
+function apiUrlSalvaNoNavegador() {
+    const parametro = new URLSearchParams(location.search).get("api");
+
+    try {
+        if (parametro !== null) {
+            if (semBarraFinal(parametro)) {
+                localStorage.setItem(CHAVE_API_URL, semBarraFinal(parametro));
+            } else {
+                localStorage.removeItem(CHAVE_API_URL);
+            }
+        }
+
+        return localStorage.getItem(CHAVE_API_URL) || "";
+    } catch {
+        return "";
+    }
+}
+
+
+function apiUrlDoHtml() {
+    const meta = document.querySelector('meta[name="zerotomei-api"]');
+
+    return meta ? semBarraFinal(meta.content || "") : "";
+}
+
+
 function resolverApiUrl() {
+    const manual = apiUrlSalvaNoNavegador() || apiUrlDoHtml();
+
+    if (manual) {
+        return manual;
+    }
+
     if (location.port === "3000") {
         return location.origin;
     }
@@ -24,10 +75,20 @@ function resolverApiUrl() {
         return `${location.protocol}//${location.hostname}:3000`;
     }
 
-    return API_URL_PRODUCAO;
+    return semBarraFinal(API_URL_PRODUCAO);
 }
 
+
 const API_URL = resolverApiUrl();
+
+if (!API_URL) {
+    console.warn(
+        "[Zero ao MEI] Nenhuma URL de API configurada: rodando em MODO LOCAL " +
+        "(dados de api/db.json salvos só neste navegador). " +
+        "Pra usar a API real, preencha API_URL_PRODUCAO em shared/scripts/api.js " +
+        "ou abra a página com ?api=https://sua-api.onrender.com"
+    );
+}
 
 // Raiz do projeto (shared/scripts/ -> ../../), funciona tanto no Pages quanto no Express
 const raizProjetoApi = new URL("../../", document.currentScript.src);
@@ -314,6 +375,34 @@ const modoLocal = (() => {
         return sessao.usuario;
     }
 
+    function proximoId(colecao) {
+        const ids = Object.values(colecao || {}).map((item) => Number(item.id) || 0);
+
+        return Math.max(0, ...ids) + 1;
+    }
+
+
+    function somenteDoUsuario(colecao, usuario) {
+        return Object.values(colecao || {}).filter((item) => item.id_usuario === usuario.id_usuario);
+    }
+
+
+    // Repetido em tarefas/eventos/movimentações: o item existe? é do usuário logado?
+    function acessarItem(colecao, id, usuario, mensagens) {
+        const item = (colecao || {})[id];
+
+        if (!item) {
+            return { erro: json(404, { erro: mensagens.naoEncontrado }) };
+        }
+
+        if (item.id_usuario !== usuario.id_usuario) {
+            return { erro: json(403, { erro: mensagens.naoEhSeu }) };
+        }
+
+        return { item };
+    }
+
+
     function perfilPublico(dados, email) {
         return {
             nome: dados.nome,
@@ -539,12 +628,558 @@ const modoLocal = (() => {
                 },
             });
         },
+
+        // ---------------- Financeiro: movimentações ----------------
+
+        "GET /api/financeiro/movimentacoes"(db, { usuario, query }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const tipo = query.get("tipo");
+
+            if (tipo && tipo !== "entrada" && tipo !== "saida") {
+                return json(400, { erro: "Tipo inválido. Use 'entrada' ou 'saida'" });
+            }
+
+            const mes = query.get("mes");
+            const ano = query.get("ano");
+
+            const movimentacoes = somenteDoUsuario(db.movimentacoes, usuario)
+                .filter((m) => !tipo || m.tipo === tipo)
+                .filter((m) => {
+                    if (!mes || !ano) {
+                        return true;
+                    }
+
+                    const [anoMov, mesMov] = m.data.split("-").map(Number);
+
+                    return anoMov === Number(ano) && mesMov === Number(mes);
+                })
+                .sort((a, b) => new Date(b.data) - new Date(a.data));
+
+            return json(200, movimentacoes);
+        },
+
+        "POST /api/financeiro/movimentacoes"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { descricao, valor, tipo, data } = corpo;
+
+            if (!descricao || !String(descricao).trim()) {
+                return json(400, { erro: "A descrição é obrigatória" });
+            }
+
+            const valorNumero = Number(valor);
+
+            if (!valorNumero || valorNumero <= 0) {
+                return json(400, { erro: "Informe um valor maior que zero" });
+            }
+
+            if (tipo !== "entrada" && tipo !== "saida") {
+                return json(400, { erro: "O tipo deve ser 'entrada' ou 'saida'" });
+            }
+
+            if (!data || !/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+                return json(400, { erro: "Informe uma data no formato AAAA-MM-DD" });
+            }
+
+            db.movimentacoes = db.movimentacoes || {};
+
+            const movimentacao = {
+                id: proximoId(db.movimentacoes),
+                id_usuario: usuario.id_usuario,
+                descricao: String(descricao).trim(),
+                valor: valorNumero,
+                tipo,
+                data,
+            };
+
+            db.movimentacoes[movimentacao.id] = movimentacao;
+            salvarBanco(db);
+
+            return json(201, { sucesso: true, movimentacao });
+        },
+
+        "DELETE /api/financeiro/movimentacoes/:id"(db, { usuario, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { item, erro } = acessarItem(db.movimentacoes, params.id, usuario, {
+                naoEncontrado: "Movimentação não encontrada",
+                naoEhSeu: "Essa movimentação não pertence a você",
+            });
+
+            if (erro) {
+                return erro;
+            }
+
+            delete db.movimentacoes[params.id];
+            salvarBanco(db);
+
+            return json(200, { sucesso: true });
+        },
+
+        // ---------------- Tarefas (Lembretes) ----------------
+
+        "GET /api/tarefas"(db, { usuario }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            return json(200, somenteDoUsuario(db.tarefas, usuario));
+        },
+
+        "POST /tarefas"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { titulo, descricao } = corpo;
+
+            if (!titulo) {
+                return json(400, { erro: "O título da tarefa é obrigatório" });
+            }
+
+            db.tarefas = db.tarefas || {};
+
+            const tarefa = {
+                id: proximoId(db.tarefas),
+                id_usuario: usuario.id_usuario,
+                titulo,
+                descricao: descricao || "",
+                status: "pendente",
+            };
+
+            db.tarefas[tarefa.id] = tarefa;
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, tarefa });
+        },
+
+        "PUT /tarefas/:id"(db, { usuario, corpo, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { item: tarefa, erro } = acessarItem(db.tarefas, params.id, usuario, {
+                naoEncontrado: "Tarefa não encontrada",
+                naoEhSeu: "Essa tarefa não pertence a você",
+            });
+
+            if (erro) {
+                return erro;
+            }
+
+            const { titulo, descricao, status } = corpo;
+
+            if (titulo !== undefined) {
+                if (!String(titulo).trim()) {
+                    return json(400, { erro: "O título da tarefa é obrigatório" });
+                }
+
+                tarefa.titulo = titulo;
+            }
+
+            if (descricao !== undefined) {
+                tarefa.descricao = descricao;
+            }
+
+            if (status !== undefined) {
+                if (status !== "pendente" && status !== "concluida") {
+                    return json(400, { erro: "Status inválido, use 'pendente' ou 'concluida'" });
+                }
+
+                tarefa.status = status;
+            }
+
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, tarefa });
+        },
+
+        "DELETE /tarefas/:id"(db, { usuario, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { erro } = acessarItem(db.tarefas, params.id, usuario, {
+                naoEncontrado: "Tarefa não encontrada",
+                naoEhSeu: "Essa tarefa não pertence a você",
+            });
+
+            if (erro) {
+                return erro;
+            }
+
+            delete db.tarefas[params.id];
+            salvarBanco(db);
+
+            return json(200, { sucesso: true });
+        },
+
+        // ---------------- Eventos (Calendário) ----------------
+
+        "GET /api/eventos"(db, { usuario, query }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const mes = query.get("mes");
+            const ano = query.get("ano");
+
+            const eventos = somenteDoUsuario(db.eventos, usuario).filter((evento) => {
+                if (!mes || !ano) {
+                    return true;
+                }
+
+                const [anoEvento, mesEvento] = evento.data.split("-").map(Number);
+
+                return anoEvento === Number(ano) && mesEvento === Number(mes);
+            });
+
+            return json(200, eventos);
+        },
+
+        "POST /eventos"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { data, titulo, descricao } = corpo;
+
+            if (!data || !/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+                return json(400, { erro: "Informe uma data válida no formato AAAA-MM-DD" });
+            }
+
+            if (!titulo) {
+                return json(400, { erro: "O título do evento é obrigatório" });
+            }
+
+            db.eventos = db.eventos || {};
+
+            const evento = {
+                id: proximoId(db.eventos),
+                id_usuario: usuario.id_usuario,
+                data,
+                titulo,
+                descricao: descricao || "",
+            };
+
+            db.eventos[evento.id] = evento;
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, evento });
+        },
+
+        "PUT /eventos/:id"(db, { usuario, corpo, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { item: evento, erro } = acessarItem(db.eventos, params.id, usuario, {
+                naoEncontrado: "Evento não encontrado",
+                naoEhSeu: "Esse evento não pertence a você",
+            });
+
+            if (erro) {
+                return erro;
+            }
+
+            const { data, titulo, descricao } = corpo;
+
+            if (data !== undefined) {
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+                    return json(400, { erro: "Data inválida, use o formato AAAA-MM-DD" });
+                }
+
+                evento.data = data;
+            }
+
+            if (titulo !== undefined) {
+                if (!String(titulo).trim()) {
+                    return json(400, { erro: "O título do evento é obrigatório" });
+                }
+
+                evento.titulo = titulo;
+            }
+
+            if (descricao !== undefined) {
+                evento.descricao = descricao;
+            }
+
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, evento });
+        },
+
+        "DELETE /eventos/:id"(db, { usuario, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { erro } = acessarItem(db.eventos, params.id, usuario, {
+                naoEncontrado: "Evento não encontrado",
+                naoEhSeu: "Esse evento não pertence a você",
+            });
+
+            if (erro) {
+                return erro;
+            }
+
+            delete db.eventos[params.id];
+            salvarBanco(db);
+
+            return json(200, { sucesso: true });
+        },
+
+        // ---------------- Catálogo (cursos e mentorias) ----------------
+
+        "GET /api/cursos"(db) {
+            return json(200, db.cursos || {});
+        },
+
+        "GET /api/mentorias"(db) {
+            const mentoriasComProfessor = {};
+
+            Object.entries(db.mentorias || {}).forEach(([id, mentoria]) => {
+                const professor = (db.professores || {})[mentoria.id_professor];
+
+                mentoriasComProfessor[id] = {
+                    ...mentoria,
+                    mentor: professor ? professor.nome : "Mentor não encontrado",
+                };
+            });
+
+            return json(200, mentoriasComProfessor);
+        },
+
+        // ---------------- Meu MEI (negócio, obrigações e guias) ----------------
+
+        "GET /api/negocio"(db, { usuario }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const negocio = (db.negocios || {})[usuario.id_usuario];
+
+            return json(200, {
+                nome_usuario: usuario.nome,
+                cnpj: negocio ? negocio.cnpj : "",
+                nome_negocio: negocio ? negocio.nome_negocio : "",
+                situacao: negocio ? negocio.situacao : "",
+            });
+        },
+
+        "PUT /api/negocio"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { cnpj, nome_negocio, situacao } = corpo;
+
+            if (!cnpj || !nome_negocio || !situacao) {
+                return json(400, { erro: "Preencha CNPJ, nome do negócio e situação" });
+            }
+
+            db.negocios = db.negocios || {};
+            db.negocios[usuario.id_usuario] = { cnpj, nome_negocio, situacao };
+            salvarBanco(db);
+
+            return json(200, { sucesso: true });
+        },
+
+        "GET /api/obrigacoes"(db) {
+            return json(200, db.obrigacoes || {});
+        },
+
+        "PUT /api/obrigacoes/:id"(db, { usuario, corpo, params }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const obrigacao = (db.obrigacoes || {})[params.id];
+
+            if (!obrigacao) {
+                return json(404, { erro: "Obrigação não encontrada" });
+            }
+
+            const statusValidos = ["Em dia", "Pendente", "Concluida"];
+
+            if (!statusValidos.includes(corpo.status)) {
+                return json(400, { erro: "Status inválido" });
+            }
+
+            obrigacao.status = corpo.status;
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, obrigacao });
+        },
+
+        // db.json ainda não tem "guias": devolve vazio em vez de quebrar a tela
+        "GET /api/guias"(db) {
+            return json(200, db.guias || {});
+        },
+
+        // ---------------- Central de Ajuda ----------------
+
+        "GET /api/ajuda/categorias"(db) {
+            return json(200, Object.values(db.categoriasAjuda || {}));
+        },
+
+        "GET /api/ajuda/perguntas"(db, { query }) {
+            const categoria = query.get("categoria");
+            const perguntas = Object.values(db.perguntasFrequentes || {});
+
+            if (!categoria) {
+                return json(200, perguntas);
+            }
+
+            return json(200, perguntas.filter((p) => p.id_categoria === Number(categoria)));
+        },
+
+        "GET /api/ajuda/busca"(db, { query }) {
+            const termo = (query.get("q") || "").trim().toLowerCase();
+
+            if (!termo) {
+                return json(400, { erro: "Informe o termo de busca no parâmetro q" });
+            }
+
+            const encontradas = Object.values(db.perguntasFrequentes || {}).filter((p) => {
+                return p.pergunta.toLowerCase().includes(termo) || p.resposta.toLowerCase().includes(termo);
+            });
+
+            return json(200, encontradas);
+        },
+
+        "GET /api/ajuda/tickets"(db, { usuario }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            return json(200, somenteDoUsuario(db.tickets, usuario));
+        },
+
+        "POST /api/ajuda/tickets"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const { assunto, mensagem } = corpo;
+
+            if (!assunto || !String(assunto).trim()) {
+                return json(400, { erro: "O assunto do ticket é obrigatório" });
+            }
+
+            if (!mensagem || !String(mensagem).trim()) {
+                return json(400, { erro: "A mensagem do ticket é obrigatória" });
+            }
+
+            db.tickets = db.tickets || {};
+
+            const ticket = {
+                id: proximoId(db.tickets),
+                id_usuario: usuario.id_usuario,
+                assunto: String(assunto).trim(),
+                mensagem: String(mensagem).trim(),
+                status: "aberto",
+                criado_em: new Date().toISOString(),
+            };
+
+            db.tickets[ticket.id] = ticket;
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, ticket });
+        },
+
+        // ---------------- Planos / Assinatura ----------------
+
+        "GET /api/planos"(db) {
+            return json(200, db.planos || {});
+        },
+
+        "GET /api/planos/atual"(db, { usuario }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const dados = db.usuarios[usuario.email];
+
+            return json(200, dados ? (db.planos || {})[dados.id_plano] || null : null);
+        },
+
+        "POST /api/planos/assinar"(db, { usuario, corpo }) {
+            if (!usuario) {
+                return json(401, { erro: "Não autenticado" });
+            }
+
+            const plano = (db.planos || {})[corpo.id_plano];
+
+            if (!plano) {
+                return json(400, { erro: "Plano inválido" });
+            }
+
+            db.usuarios[usuario.email].id_plano = Number(corpo.id_plano);
+            salvarBanco(db);
+
+            return json(200, { sucesso: true, plano });
+        },
     };
+
+    // Rotas com :id (ex.: "DELETE /tarefas/:id") viram regex pra casar com "/tarefas/7".
+    // Rotas fixas são testadas primeiro: "/api/planos/atual" não pode cair numa "/api/planos/:id".
+    const rotasCompiladas = Object.entries(rotas)
+        .map(([chave, atenderRota]) => {
+            const [metodo, caminho] = chave.split(" ");
+            const nomesDosParametros = [];
+
+            const padrao = caminho.replace(/:([^/]+)/g, (_, nome) => {
+                nomesDosParametros.push(nome);
+                return "([^/]+)";
+            });
+
+            return {
+                metodo,
+                nomesDosParametros,
+                atenderRota,
+                regex: new RegExp(`^${padrao}$`),
+            };
+        })
+        .sort((a, b) => a.nomesDosParametros.length - b.nomesDosParametros.length);
+
+
+    function encontrarRota(metodo, caminho) {
+        for (const rota of rotasCompiladas) {
+            if (rota.metodo !== metodo) {
+                continue;
+            }
+
+            const encontrado = rota.regex.exec(caminho);
+
+            if (!encontrado) {
+                continue;
+            }
+
+            const params = {};
+
+            rota.nomesDosParametros.forEach((nome, indice) => {
+                params[nome] = decodeURIComponent(encontrado[indice + 1]);
+            });
+
+            return { atenderRota: rota.atenderRota, params };
+        }
+
+        return null;
+    }
+
 
     async function atender(caminho, opcoes, token) {
         const url = new URL(caminho, "http://modo-local");
         const metodo = (opcoes.method || "GET").toUpperCase();
-        const rota = rotas[`${metodo} ${url.pathname}`];
+        const rota = encontrarRota(metodo, url.pathname);
 
         if (!rota) {
             return json(501, { erro: `Rota ${metodo} ${url.pathname} ainda não existe no modo local` });
@@ -552,16 +1187,35 @@ const modoLocal = (() => {
 
         const db = await carregarBanco();
 
-        return rota(db, {
+        return rota.atenderRota(db, {
             corpo: lerCorpo(opcoes),
             query: url.searchParams,
+            params: rota.params,
             token,
             usuario: usuarioDaSessao(db, token),
         });
     }
 
-    return { atender };
+
+    // Volta o modo local pro estado original do api/db.json (útil pra demonstrar do zero)
+    function limpar() {
+        try {
+            localStorage.removeItem(CHAVE_BANCO);
+        } catch {
+            // sem storage não há o que limpar
+        }
+
+        promessaBanco = null;
+    }
+
+
+    return { atender, limpar };
 })();
+
+
+function limparDadosLocais() {
+    modoLocal.limpar();
+}
 
 
 // ================== Modo visitante =======================
