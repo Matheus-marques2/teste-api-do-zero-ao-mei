@@ -25,25 +25,25 @@
       <div class="card-saldo">
         <p class="card-saldo-label">Saldo disponível</p>
         <div class="card-saldo-row">
-          <p class="card-saldo-valor">R$: 0,00</p>
+          <p class="card-saldo-valor" id="fin-saldo">R$: 0,00</p>
           <span class="icon-edit"><img src="../Assets/Edit 2.png" /></span>
         </div>
       </div>
 
       <div class="cards-duplos">
         <div class="card-mini">
-          <p class="card-mini-label">Contas a pagar</p>
+          <p class="card-mini-label">Despesas no mês</p>
           <div class="card-mini-row">
-            <p class="card-mini-valor vermelho">R$: 0,00</p>
+            <p class="card-mini-valor vermelho" id="fin-despesas-mes">R$: 0,00</p>
             <span class="icon-edit-mini"
               ><img src="../Assets/Edit 3.png" />
             </span>
           </div>
         </div>
         <div class="card-mini">
-          <p class="card-mini-label">Contas a receber</p>
+          <p class="card-mini-label">Receitas no mês</p>
           <div class="card-mini-row">
-            <p class="card-mini-valor verde">R$: 0,00</p>
+            <p class="card-mini-valor verde" id="fin-receitas-mes">R$: 0,00</p>
             <span class="icon-edit-mini"
               ><img src="../Assets/Edit 3.png"
             /></span>
@@ -53,36 +53,35 @@
 
       <p class="section-title">Despesas:</p>
 
-      <div class="cards-despesas">
+      <div class="cards-despesas" id="fin-lista-despesas">
         <div class="card-despesa">
-          <p class="card-despesa-texto">Indisponível</p>
+          <p class="card-despesa-texto" id="fin-despesa-1">Indisponível</p>
         </div>
         <div class="card-despesa">
-          <p class="card-despesa-texto">Indisponível</p>
+          <p class="card-despesa-texto" id="fin-despesa-2">Indisponível</p>
         </div>
         <div class="card-despesa">
-          <p class="card-despesa-texto">Indisponível</p>
+          <p class="card-despesa-texto" id="fin-despesa-3">Indisponível</p>
         </div>
       </div>
 
       <div class="exemplo-header">
-        <p class="section-title">Exemplo:</p>
+        <p class="section-title">Última movimentação:</p>
         <span class="ver-mais">Ver mais</span>
       </div>
 
-      <div class="card-exemplo">
+      <div class="card-exemplo" id="fin-ultima-movimentacao">
         <div class="card-exemplo-esquerda">
-          <span class="seta-cima">↑</span>
-          <p class="card-exemplo-nome">Uber do brasil Ltda</p>
+          <span class="seta-cima" id="fin-ultima-seta">↑</span>
+          <p class="card-exemplo-nome" id="fin-ultima-nome">Nenhuma movimentação ainda</p>
         </div>
         <div class="card-exemplo-direita">
-          <p class="card-exemplo-valor">-R$ 120,00</p>
-          <span class="icon-lixo"><img src="../Assets/Trash.svg" /> </span>
+          <p class="card-exemplo-valor" id="fin-ultima-valor"></p>
+          <span class="icon-lixo" id="fin-ultima-excluir"><img src="../Assets/Trash.svg" /> </span>
         </div>
       </div>
     </div>
 
-    <script src="script.js"></script>
     <script src="../../../shared/components/FinanceiroNavBar/script.js"></script>
 
     <!-- Navbar global (rodapé) -->
@@ -91,5 +90,7 @@
 
     <!-- Menu lateral (abre pelo ícone de filtro) -->
     <script src="../../../shared/components/Menu/script.js"></script>
+
+    <script src="script.js"></script>
   </body>
 </html>
