@@ -1,0 +1,30 @@
+/* Navegação por abas das telas do Financeiro (Visão geral / Receitas / Despesas) */
+
+.abas-financeiro {
+	display: flex;
+	justify-content: center;
+	gap: 28px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.abas-financeiro__item {
+	font-family: "Poppins", sans-serif;
+	font-size: 15.33px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #5E5E5E;
+	padding: 0 8px 7px;
+	border-bottom: 3px solid transparent;
+	margin-bottom: -1px;
+	transition: 0.2s ease-in;
+}
+
+.abas-financeiro__item:hover {
+	color: #8E292D;
+}
+
+/* Aba da página atual: vermelho + traço embaixo (aplicada pelo script.js) */
+.abas-financeiro__item--ativo {
+	color: #8E292D;
+	border-bottom-color: #8E292D;
+}

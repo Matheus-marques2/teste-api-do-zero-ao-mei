@@ -1,0 +1,175 @@
+/* Menu lateral do app: abre pela direita e ocupa a tela toda, por cima da navbar global */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* Enquanto o menu está aberto a página de trás não rola */
+body.menu-lateral-travado {
+	overflow: hidden;
+}
+
+.menu-lateral {
+	position: fixed;
+	inset: 0;
+	z-index: 1001; /* acima da navbar global (1000) */
+	display: flex;
+	flex-direction: column;
+	padding: 24px 0 32px;
+	box-sizing: border-box;
+	overflow-y: auto;
+	background-color: #FFFFFF;
+	font-family: "Poppins", sans-serif;
+	color: #1E1E1E;
+	transform: translateX(100%);
+	visibility: hidden;
+	transition: transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.menu-lateral--aberto {
+	transform: translateX(0);
+	visibility: visible;
+	transition: transform 0.3s ease, visibility 0s;
+}
+
+.menu-lateral * {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+/* ---------- Topo ---------- */
+
+.menu-lateral__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+
+.menu-lateral__botao {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: none;
+	background: none;
+	color: #8E292D;
+	cursor: pointer;
+}
+
+.menu-lateral__voltar {
+	width: 32px;
+	height: 32px;
+}
+
+.menu-lateral__filtro {
+	display: block;
+	width: 32px;
+	height: 32px;
+}
+
+/* ---------- Perfil ---------- */
+
+.menu-lateral__perfil {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0 20px 14px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu-lateral__avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background-color: #8E292D;
+	color: #FFFFFF;
+	font-size: 26px;
+	font-weight: 400;
+}
+
+.menu-lateral__nome {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.menu-lateral__email {
+	font-size: 10px;
+	color: #5E5E5E;
+}
+
+/* ---------- Opções ---------- */
+
+.menu-lateral__opcoes {
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-lateral__item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	color: #1E1E1E;
+	text-decoration: none;
+	transition: background-color 0.2s ease-in;
+}
+
+.menu-lateral__item:hover {
+	background-color: #F3EEEA;
+}
+
+.menu-lateral__icone {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	color: #8E292D;
+}
+
+.menu-lateral__texto {
+	flex: 1;
+	font-size: 17px;
+}
+
+.menu-lateral__seta {
+	width: 22px;
+	height: 22px;
+}
+
+/* ---------- Sair ---------- */
+
+.menu-lateral__sair {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	margin: auto 20px 0;
+	padding: 14px;
+	border-radius: 10px;
+	background-color: #8E292D;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	color: #FFFFFF;
+	font-size: 18px;
+	text-decoration: none;
+	transition: background-color 0.2s ease-in;
+}
+
+.menu-lateral__sair:hover {
+	background-color: #74201F;
+}
+
+.menu-lateral__sair .menu-lateral__icone {
+	color: #FFFFFF;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.menu-lateral,
+	.menu-lateral--aberto {
+		transition: none;
+	}
+}

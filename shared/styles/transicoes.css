@@ -1,0 +1,55 @@
+/* Transição suave ao trocar de tela (View Transitions entre páginas).
+   Navegadores sem suporte simplesmente trocam de página como antes.
+   Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
+
+@view-transition {
+	navigation: auto;
+}
+
+/* Conteúdo da página: sai apagando e a nova tela entra subindo de leve */
+::view-transition-old(root) {
+	animation: 180ms ease-in both transicao-sair;
+}
+
+::view-transition-new(root) {
+	animation: 280ms ease-out both transicao-entrar;
+}
+
+@keyframes transicao-sair {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes transicao-entrar {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+}
+
+/* Navbars ficam paradas no lugar enquanto o conteúdo troca */
+.navbar-global {
+	view-transition-name: navbar-global;
+}
+
+.abas-financeiro,
+.abas-mei,
+.abas-mentorias,
+.abas-atividades {
+	view-transition-name: abas-secao;
+}
+
+/* A aba ativa só troca de cor, sem animar a barra inteira */
+::view-transition-group(navbar-global),
+::view-transition-group(abas-secao) {
+	animation-duration: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
