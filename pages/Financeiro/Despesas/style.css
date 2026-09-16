@@ -1,0 +1,322 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.financeiro {
+	padding: 31px 19px 0;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+/* Título da página + botão de filtro */
+.financeiro__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.financeiro__topo h1 {
+	font-size: 30.11px;
+	font-weight: 400;
+}
+
+.financeiro__filtro {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-right: 16px;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.financeiro__filtro img {
+	width: 35.12px;
+	height: 36px;
+}
+
+/* A navbar de abas sangra até as bordas, como no Figma */
+#navbar {
+	margin: 0 -19px;
+}
+
+/* Só para leitores de tela: o gráfico já se explica visualmente */
+.visualmente-oculto {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* Rosca + legenda */
+.financeiro__grafico {
+	display: flex;
+	align-items: center;
+	gap: 26px;
+	padding-top: 19px;
+}
+
+.rosca {
+	position: relative;
+	flex: 0 0 197px;
+	max-width: 197px;
+}
+
+.rosca svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	/* Começa às 9h em vez das 12h, como no Figma */
+	transform: rotate(180deg);
+}
+
+.rosca__fatia {
+	fill: none;
+	stroke-width: 13;
+	stroke-linecap: round;
+}
+
+.rosca__fatia--entradas {
+	stroke: #20E336;
+}
+
+.rosca__fatia--saidas {
+	stroke: #8E292D;
+}
+
+.rosca__total {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 14.32px;
+	font-weight: 500;
+}
+
+.legenda__linha {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.legenda__linha + .legenda__linha {
+	margin-top: 12px;
+}
+
+.legenda__pct {
+	font-size: 11.94px;
+	font-weight: 500;
+}
+
+.legenda__cor {
+	flex-shrink: 0;
+	width: 22px;
+	height: 21px;
+	border-radius: 6px;
+}
+
+.legenda__cor--entradas {
+	background-color: #20E336;
+}
+
+.legenda__cor--saidas {
+	background-color: #8E292D;
+}
+
+.legenda__nome {
+	font-size: 14.32px;
+	font-weight: 500;
+}
+
+.legenda__rodape {
+	margin-top: 3px;
+	margin-left: 32px;
+}
+
+.legenda__periodo {
+	max-width: 72px;
+	font-size: 7.54px;
+	font-weight: 500;
+}
+
+.legenda__mes {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 2px;
+	padding: 1px 6px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	background: none;
+	font-family: poppins, sans-serif;
+	font-size: 9.91px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #5E5E5E;
+	cursor: pointer;
+}
+
+.legenda__mes img {
+	width: 10px;
+	height: 10px;
+}
+
+/* Resumo do mês */
+.financeiro__resumo {
+	padding: 17px 11px 0;
+}
+
+.resumo__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 7px;
+}
+
+.resumo__topo h2 {
+	font-size: 14.32px;
+	font-weight: 500;
+}
+
+.resumo__topo img {
+	width: 24px;
+	height: 24px;
+}
+
+.resumo__cartao {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	min-height: 82px;
+	padding: 20px 15px;
+	border-radius: 8px;
+	background-color: #F4EFEB;
+}
+
+.resumo__rotulo {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	margin-bottom: 8px;
+	font-size: 11.56px;
+	font-weight: 500;
+}
+
+.resumo__cor {
+	flex-shrink: 0;
+	width: 18px;
+	height: 17px;
+	border-radius: 5px;
+}
+
+.resumo__cor--entrada {
+	background-color: #20E336;
+}
+
+.resumo__cor--saida {
+	background-color: #8E292D;
+}
+
+.resumo__cor--lucro {
+	background-color: #0865FE;
+}
+
+.resumo__valor {
+	font-size: 11.56px;
+	font-weight: 500;
+}
+
+/* Lista de lançamentos */
+.financeiro__detalhes {
+	padding: 7px 11px 24px;
+}
+
+.detalhes__topo {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 7px;
+	margin-left: 3px;
+}
+
+.detalhes__topo h2 {
+	font-size: 14.32px;
+	font-weight: 500;
+}
+
+.detalhes__adicionar {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.detalhes__adicionar img {
+	width: 18px;
+	height: 18px;
+}
+
+.lancamento {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 51px;
+	padding: 0 12px;
+	border-radius: 8px;
+	background-color: #F4EFEB;
+	transition: 0.2s ease-in;
+}
+
+.lancamento:hover {
+	box-shadow: -2px 2px 7.7px rgba(0, 0, 0, 0.15);
+}
+
+.lancamento + .lancamento {
+	margin-top: 8px;
+}
+
+.lancamento__seta {
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+}
+
+.lancamento__nome {
+	font-size: 12px;
+	font-weight: 400;
+}
+
+/* Empurra valor e lixeira para a direita da linha */
+.lancamento__valor {
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.lancamento__valor--entrada {
+	color: #2BBA18;
+}
+
+.lancamento__valor--saida {
+	color: #8E292D;
+}
+
+.lancamento__excluir {
+	flex-shrink: 0;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.lancamento__excluir img {
+	width: 17px;
+	height: 17px;
+}

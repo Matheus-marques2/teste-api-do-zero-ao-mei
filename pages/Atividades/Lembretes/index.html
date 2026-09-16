@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/AtividadesNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Lembretes</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="atividades">
+        <header class="atividades__topo">
+            <h1>Atividades</h1>
+
+            <button class="atividades__filtro" type="button" data-abrir-menu aria-label="Abrir menu">
+                <img src="../Assets/Filter.svg" alt="Filtrar atividades">
+            </button>
+        </header>
+
+        <div id="navbar"></div>
+
+        <section class="atividades__lembretes">
+            <h2>Seus lembretes</h2>
+
+            <h3 class="grupo">Atividades</h3>
+
+            <div class="lembretes">
+                <article class="lembrete">
+                    <h4 class="lembrete__nome">Contagem geral do caixa</h4>
+
+                    <p class="lembrete__hora">
+                        18:30
+
+                        <button class="lembrete__acao">
+                            <img src="../Assets/Edit.svg" alt="Editar lembrete">
+                        </button>
+                    </p>
+
+                    <p class="lembrete__detalhe">Notificações</p>
+                    <p class="lembrete__detalhe">Diariamente</p>
+
+                    <span class="lembrete__estado">Ativo</span>
+                </article>
+
+                <article class="lembrete">
+                    <h4 class="lembrete__nome">Verificar pendências</h4>
+
+                    <p class="lembrete__hora">
+                        22:00
+
+                        <button class="lembrete__acao">
+                            <img src="../Assets/Edit.svg" alt="Editar lembrete">
+                        </button>
+                    </p>
+
+                    <p class="lembrete__detalhe">Pelo app</p>
+                    <p class="lembrete__detalhe">Semanalmente</p>
+
+                    <span class="lembrete__estado">Desativado</span>
+                </article>
+            </div>
+        </section>
+
+        <hr class="divisor">
+
+        <section class="atividades__mentorias">
+            <h3 class="grupo">Mentorias</h3>
+
+            <article class="mentoria">
+                <img class="mentoria__foto" src="../../Mentorias/Assets/professional-smiling-woman 1.png"
+                    alt="Foto da mentora Fernanda">
+
+                <div class="mentoria__texto">
+                    <h4>Finanças para iniciantes</h4>
+                    <p class="mentoria__autor">Mentoria com Fernanda</p>
+
+                    <p class="mentoria__quando">
+                        <strong>20:30</strong>
+                        <span>Dia 27/08</span>
+                    </p>
+                </div>
+
+                <button class="mentoria__acao">
+                    <img src="../Assets/Edit.svg" alt="Editar lembrete da mentoria">
+                </button>
+            </article>
+
+            <article class="mentoria">
+                <img class="mentoria__foto" src="../../Mentorias/Assets/smiling-man-in-blue 1.png"
+                    alt="Foto do mentor Robson">
+
+                <div class="mentoria__texto">
+                    <h4>Organização e produtividade</h4>
+                    <p class="mentoria__autor">Mentoria com Robson</p>
+
+                    <p class="mentoria__quando">
+                        <strong>21:40</strong>
+                        <span>Dia 31/08</span>
+                    </p>
+                </div>
+
+                <button class="mentoria__acao">
+                    <img src="../Assets/Edit.svg" alt="Editar lembrete da mentoria">
+                </button>
+            </article>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/AtividadesNavBar/script.js"></script>
+
+</html>

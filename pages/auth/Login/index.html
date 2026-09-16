@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Do Zero ao MEI</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Ícones do FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+    <script src="../../../shared/scripts/api.js"></script>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="logo-container">
+        <img src="../../../shared/imagens/Group 5.png" alt="Do Zero ao MEI" />
+      </div>
+
+      <h2 class="title">LOGIN</h2>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <input type="email" id="email" placeholder="E-mail" required />
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Senha" required />
+        </div>
+
+        <div class="forgot-password">
+          <a href="#">Esqueci minha senha</a>
+          <a href="../Cadastro/index.html">Cadastrar</a>
+        </div>
+
+        <p class="mensagem-form" id="loginMensagem" role="alert"></p>
+        
+        <button type="submit" class="btn-primary">ENTRAR</button>
+      </form>
+      <div class="signup-link continuar-sem-login">
+        <a href="../../../index.html" id="continuarSemLogin">Continuar sem login</a>
+      </div>
+
+      <!-- Botões sociais corrigidos -->
+      <div class="social-login">
+        <button type="button" class="btn-social google">
+          <i class="fa-brands fa-google"></i>
+        </button>
+        <button type="button" class="btn-social facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </button>
+        <button type="button" class="btn-social menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+      
+      <div class="divider"></div>
+      <div class="signup-link">
+        <a href="../Cadastro/index.html">Criar minha conta</a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

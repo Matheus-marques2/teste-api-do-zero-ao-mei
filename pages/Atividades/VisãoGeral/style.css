@@ -1,0 +1,178 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.atividades {
+	padding: 31px 19px 0;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+/* Título da página + botão de filtro */
+.atividades__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.atividades__topo h1 {
+	font-size: 30.11px;
+	font-weight: 400;
+}
+
+.atividades__filtro {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-right: 16px;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.atividades__filtro img {
+	width: 35.12px;
+	height: 36px;
+}
+
+/* A navbar de abas sangra até as bordas, como as linhas divisórias do Figma */
+#navbar {
+	margin: 0 -19px;
+}
+
+/* Blocos entre os divisores */
+.atividades__disponiveis {
+	padding: 22px 0 17px;
+}
+
+.atividades__adicionar {
+	padding: 13px 0 18px;
+}
+
+.atividades__sugestoes {
+	padding: 8px 0 24px;
+}
+
+.atividades h2 {
+	font-size: 17.87px;
+	font-weight: 500;
+	margin-left: 6px;
+	margin-bottom: 10px;
+}
+
+.divisor {
+	height: 1px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 0 -19px;
+}
+
+/* Card de atividade */
+.tarefa {
+	position: relative;
+	display: flex;
+	gap: 19px;
+	height: 100px;
+	padding: 15px 24px 0;
+	border-radius: 16px;
+	background-color: #F4EFEB;
+	box-shadow: -2px 2px 7.7px rgba(0, 0, 0, 0.25);
+	transition: 0.2s ease-in;
+}
+
+.tarefa:hover {
+	box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tarefa + .tarefa {
+	margin-top: 16px;
+}
+
+.tarefa__marcador {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	margin-top: 4px;
+	border: 1px solid #8E292D;
+	border-radius: 50%;
+}
+
+.tarefa__marcador--concluida {
+	background-color: #8E292D;
+}
+
+.tarefa__texto h3 {
+	font-size: 17.87px;
+	font-weight: 500;
+}
+
+.tarefa__texto p {
+	/* Largura vinda do Figma: mantém as quebras de linha do protótipo
+	   e impede que o texto passe por baixo do ícone de ação */
+	max-width: 222px;
+	font-size: 11.77px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.75);
+}
+
+.tarefa__acao {
+	position: absolute;
+	right: 13px;
+	bottom: 11px;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.tarefa__acao img {
+	width: 20px;
+	height: 20px;
+}
+
+/* Na sugestão o ícone é um "+" maior, centralizado na altura do card */
+.tarefa--sugestao .tarefa__acao {
+	top: 50%;
+	right: 19px;
+	bottom: auto;
+	transform: translateY(-50%);
+}
+
+.tarefa--sugestao .tarefa__acao img {
+	width: 27px;
+	height: 27px;
+}
+
+/* Botão "Adicionar Atividade" */
+.adicionar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100px;
+	padding-top: 23px;
+	border: none;
+	border-radius: 16px;
+	background-color: #F4EFEB;
+	box-shadow: -2px 2px 7.7px rgba(0, 0, 0, 0.25);
+	font-family: poppins, sans-serif;
+	font-size: 22.29px;
+	font-weight: 600;
+	line-height: 1.5;
+	color: #8E292D;
+	cursor: pointer;
+	transition: 0.2s ease-in;
+}
+
+.adicionar:hover {
+	box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.adicionar img {
+	width: 39px;
+	height: 39px;
+}

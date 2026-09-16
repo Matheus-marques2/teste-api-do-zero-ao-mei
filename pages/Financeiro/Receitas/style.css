@@ -1,0 +1,147 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.financeiro {
+	padding: 31px 19px 0;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+/* Título da página + botão de filtro */
+.financeiro__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.financeiro__topo h1 {
+	font-size: 30.11px;
+	font-weight: 400;
+}
+
+.financeiro__filtro {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-right: 16px;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.financeiro__filtro img {
+	width: 35.12px;
+	height: 36px;
+}
+
+/* A navbar de abas sangra até as bordas, como no Figma */
+#navbar {
+	margin: 0 -19px;
+}
+
+/* Área de upload */
+.financeiro__envio {
+	padding-top: 28px;
+}
+
+.envio {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	max-width: 311px;
+	min-height: 277px;
+	margin: 0 auto;
+	padding: 16px;
+	border: none;
+	border-radius: 16px;
+	background-color: #F4EFEB;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+	cursor: pointer;
+	transition: 0.2s ease-in;
+}
+
+.envio:hover {
+	box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.envio img {
+	width: 75px;
+	height: 75px;
+}
+
+.envio__texto {
+	font-size: 23.42px;
+	font-weight: 400;
+	text-align: left;
+}
+
+/* Instruções */
+.financeiro__instrucoes {
+	padding: 33px 0 24px;
+}
+
+.financeiro__instrucoes h2 {
+	font-size: 14.32px;
+	font-weight: 500;
+	margin-left: 27px;
+	margin-bottom: 14px;
+}
+
+.instrucoes {
+	margin-left: 27px;
+}
+
+.instrucoes li {
+	position: relative;
+	padding-left: 29px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #5E5E5E;
+}
+
+.instrucoes li + li {
+	margin-top: 9px;
+}
+
+/* Marcador redondo de cada instrução */
+.instrucoes li::before {
+	content: "";
+	position: absolute;
+	left: 7px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 14px;
+	height: 13px;
+	border-radius: 50%;
+	background-color: #8E292D;
+}
+
+.continuar {
+	display: block;
+	width: 189px;
+	max-width: 100%;
+	height: 50.4px;
+	margin: 33px auto 0;
+	border: none;
+	border-radius: 27.3px;
+	background-color: #8E292D;
+	font-family: poppins, sans-serif;
+	font-size: 21.57px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: rgba(255, 255, 255, 0.75);
+	cursor: pointer;
+	transition: 0.2s ease-in;
+}
+
+.continuar:hover {
+	background-color: #7A2226;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../../shared/scripts/api.js" data-protegida></script>
+  <title>Informações Pessoais</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div>
+    <form id="form-perfil" novalidate>
+      <div class="header">
+        <button class="icon-btn" type="button" data-abrir-menu aria-label="Abrir menu"><i data-lucide="chevron-left" size="28"></i></button>
+        <h1 class="header-title">Informações pessoais</h1>
+      </div>
+
+      <div class="avatar-section">
+        <div class="avatar-circle" id="perfil-avatar" aria-hidden="true">?</div>
+        <button class="edit-badge" type="button" id="perfil-editar">Editar</button>
+      </div>
+
+      <div class="form-group">
+        <div class="input-box">
+          <label for="perfil-nome">Nome</label>
+          <input type="text" id="perfil-nome" name="nome" placeholder="Seu nome" maxlength="65" autocomplete="name">
+        </div>
+
+        <div class="input-box">
+          <label for="perfil-pronome">Pronomes</label>
+          <input type="text" id="perfil-pronome" name="pronome" placeholder="Ex.: ela/dela" maxlength="30">
+        </div>
+
+        <div class="input-box">
+          <label for="perfil-numero">Número</label>
+          <div class="input-wrapper">
+            <input type="tel" id="perfil-numero" name="numero" placeholder="XX XXXXX-XXXX" maxlength="20" autocomplete="tel">
+            <span class="verified-icon"><i data-lucide="check-circle-2" size="18"></i></span>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label for="perfil-email">Email</label>
+          <div class="input-wrapper">
+            <input type="email" id="perfil-email" name="email" placeholder="seuemail@gmail.com" autocomplete="email">
+            <span class="verified-icon"><i data-lucide="check-circle-2" size="18"></i></span>
+          </div>
+        </div>
+
+        <label class="bio-box" for="perfil-sobre">
+          <div class="bio-content">
+            <h3>Sobre</h3>
+            <textarea id="perfil-sobre" name="sobre" class="bio-input" rows="2" maxlength="280" placeholder="Conte um pouco sobre você e seu negócio."></textarea>
+          </div>
+          <i data-lucide="chevron-right" size="24" style="color: #8b3232;"></i>
+        </label>
+      </div>
+
+      <p class="perfil-mensagem" id="perfil-mensagem" role="status"></p>
+
+      <button class="save-btn" type="submit">Salvar alterações</button>
+    </form>
+  </div>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo « do topo) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/AtividadesNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Atividades</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="atividades">
+        <header class="atividades__topo">
+            <h1>Atividades</h1>
+
+            <button class="atividades__filtro" type="button" data-abrir-menu aria-label="Abrir menu">
+                <img src="../Assets/Filter.svg" alt="Filtrar atividades">
+            </button>
+        </header>
+
+        <div id="navbar"></div>
+
+        <section class="atividades__disponiveis">
+            <h2>Atividades Disponiveis</h2>
+
+            <article class="tarefa">
+                <span class="tarefa__marcador tarefa__marcador--concluida"></span>
+
+                <div class="tarefa__texto">
+                    <h3>Contagem geral do caixa</h3>
+                    <p>Fazer o gerenciamento diario dos caixas em aberto no começo e fim do dia.</p>
+                </div>
+
+                <button class="tarefa__acao">
+                    <img src="../Assets/Edit.svg" alt="Editar atividade">
+                </button>
+            </article>
+
+            <article class="tarefa">
+                <span class="tarefa__marcador"></span>
+
+                <div class="tarefa__texto">
+                    <h3>Verificar pendências</h3>
+                    <p>Fazer a verificação em relação as pendêcias de funcionários</p>
+                </div>
+
+                <button class="tarefa__acao">
+                    <img src="../Assets/Edit.svg" alt="Editar atividade">
+                </button>
+            </article>
+        </section>
+
+        <hr class="divisor">
+
+        <section class="atividades__adicionar">
+            <button class="adicionar">
+                Adicionar Atividade
+                <img src="../Assets/Plus.svg" alt="">
+            </button>
+        </section>
+
+        <hr class="divisor">
+
+        <section class="atividades__sugestoes">
+            <h2>Sugestões</h2>
+
+            <article class="tarefa tarefa--sugestao">
+                <span class="tarefa__marcador"></span>
+
+                <div class="tarefa__texto">
+                    <h3>Verificar pendências</h3>
+                    <p>Fazer a verificação em relação as pendêcias de funcionários</p>
+                </div>
+
+                <button class="tarefa__acao">
+                    <img src="../Assets/Plus.svg" alt="Adicionar sugestão às atividades">
+                </button>
+            </article>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/AtividadesNavBar/script.js"></script>
+
+</html>

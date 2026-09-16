@@ -1,0 +1,217 @@
+body {
+  font-family: poppins, sans-serif;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+#container-meuscursos {
+  margin: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecalho-meuscursos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.cabecalho-meuscursos h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.img {
+  border: 0;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.botao-filtro img {
+  display: block;
+  width: 35.12px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.container-destaque {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mentoria-texto h2 {
+  margin: 5px 3px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.mentorias-texto h2 {
+  margin: 20px 3px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.card-destaque {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  background: #F4EFEB;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease-in;
+}
+
+.card-destaque:hover {
+  transform: scale(1.05);
+}
+
+.card-destaque>img {
+  width: 80px;
+  height: 100px;
+  min-width: 100px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
+.info-curso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 10px;
+}
+
+
+
+.info-curso h2 {
+  margin: 0;
+  font-size: 0.90rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+
+
+.info-curso p {
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+
+
+.info-curso span {
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.card-mentoria {
+  display: grid;
+  grid-template-columns: 90px 1fr 70px;
+  align-items: center;
+  column-gap: 2px;
+  min-height: 70px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.card-mentoria>img {
+  width: 72px;
+  height: 71px;
+  object-fit: cover;
+  border-radius: 50%;
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+
+.card-mentoria h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  grid-column: 2;
+  grid-row: 1;
+  align-items: flex-end;
+
+}
+
+
+.card-mentoria>p {
+  margin: 0;
+  font-size: 12px;
+  grid-column: 2;
+  grid-row: 2;
+
+}
+
+.card-destaque .btn-curso {
+    width: 90px;
+    height: 24px;
+    padding: 10px 0;
+    border-radius: 50px;
+    background-color: #8E292D;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn-curso {
+    width: 113px;
+    height: 31px;
+    padding: 0;
+    border: none;
+    border-radius: 50px;
+    background-color: #8E292D;
+    color: #FFFFFF;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-right: 0.5rem;
+}
+
+.card-icone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  grid-column: 3;
+  grid-row: 1 / 3;
+  gap: 8px;
+}
+
+
+.card-icone i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+
+
+.card-icone .icone {
+  width: 23px;
+  height: 26px;
+  margin-right: 0.80rem;
+}
+
+.card-icone p {
+  margin: 0;
+  font-size: 14px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/MeuMeiNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Obrigações | Meu MEI</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="obrigacoes">
+        <div id="navbar"></div>
+
+        <nav class="filtros">
+            <a class="filtros__item filtros__item--ativo" href="#">Todas</a>
+            <a class="filtros__item" href="#">Pendentes</a>
+            <a class="filtros__item" href="#">Concluídas</a>
+        </nav>
+
+        <section class="obrigacoes__lista">
+            <article class="obrigacao">
+                <img class="obrigacao__icone" src="../Assets/DasMensal.svg" alt="">
+
+                <div class="obrigacao__conteudo">
+                    <h2>DAS mensal</h2>
+
+                    <p class="obrigacao__rotulo">Próximo vencimento</p>
+                    <p class="obrigacao__data">20/09/2026</p>
+                    <p class="obrigacao__detalhe">Pagamento mensal do MEI.</p>
+
+                    <a class="obrigacao__acao" href="#">
+                        Ver como emitir
+                        <img src="../Assets/Chevron.svg" alt="">
+                    </a>
+                </div>
+
+                <span class="selo selo--ok">Em dia</span>
+            </article>
+
+            <article class="obrigacao">
+                <img class="obrigacao__icone" src="../Assets/CalendarioSimples.svg" alt="">
+
+                <div class="obrigacao__conteudo">
+                    <h2>Declaração Anual</h2>
+
+                    <p class="obrigacao__rotulo">Prazo para entrega</p>
+                    <p class="obrigacao__data">31/05/2027</p>
+                    <p class="obrigacao__detalhe">Declaração anual do MEI (DASN-SIMEI)</p>
+
+                    <a class="obrigacao__acao" href="#">
+                        Ver como emitir
+                        <img src="../Assets/Chevron.svg" alt="">
+                    </a>
+                </div>
+
+                <span class="selo selo--pendente">Pendente</span>
+            </article>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/MeuMeiNavBar/script.js"></script>
+
+</html>

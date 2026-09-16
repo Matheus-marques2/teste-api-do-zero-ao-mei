@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/MeuMeiNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Meu MEI</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="meu-mei">
+        <div id="navbar"></div>
+
+        <section class="negocio">
+            <div class="negocio__avatar">
+                <img src="../Assets/Loja.svg" alt="">
+            </div>
+
+            <div class="negocio__dados">
+                <h2>Meu negócio</h2>
+
+                <p>Evellyn Gomes</p>
+                <p>CNPJ: 00.000.000/0001-00</p>
+                <p class="negocio__situacao">Situação: <span>Mei Ativo</span></p>
+            </div>
+
+            <a class="negocio__acao" href="#">Ver informações</a>
+        </section>
+
+        <section class="obrigacoes">
+            <header class="secao">
+                <h2>Suas obrigações</h2>
+
+                <a href="../Obrigações/index.html">Ver todos</a>
+            </header>
+
+            <div class="obrigacoes__lista">
+                <article class="resumo">
+                    <div class="resumo__topo">
+                        <img class="resumo__icone" src="../Assets/DasMensal.svg" alt="">
+
+                        <span class="selo selo--ok">Em dia</span>
+                    </div>
+
+                    <h3>DAS mensal</h3>
+
+                    <p class="resumo__rotulo">Próximo vencimento</p>
+                    <p class="resumo__data">20/09/2026</p>
+
+                    <a class="resumo__acao" href="#">
+                        Ver como emitir
+                        <img src="../Assets/Chevron.svg" alt="">
+                    </a>
+                </article>
+
+                <article class="resumo">
+                    <div class="resumo__topo">
+                        <img class="resumo__icone" src="../Assets/CalendarioSimples.svg" alt="">
+
+                        <span class="selo selo--atencao">Atenção</span>
+                    </div>
+
+                    <h3>Declaração Anual</h3>
+                    <p class="resumo__sigla">(DASN-SIMEI)</p>
+
+                    <p class="resumo__rotulo">Prazo para entrega</p>
+                    <p class="resumo__data">31/05/2027</p>
+
+                    <a class="resumo__acao" href="#">
+                        Saiba mais
+                        <img src="../Assets/Chevron.svg" alt="">
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section class="guia">
+            <h2>Guia do MEI</h2>
+
+            <div class="guia__grade">
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Predio.svg" alt="">
+
+                    <span>Como abrir um MEI</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Recibo.svg" alt="">
+
+                    <span>Como emitir o DAS</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Martelo.svg" alt="">
+
+                    <span>Direitos e obrigações</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Documentos.svg" alt="">
+
+                    <span>Documentos importantes</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Calendario.svg" alt="">
+
+                    <span>Declaração anual</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+
+                <a class="atalho" href="../Guias/index.html">
+                    <img class="atalho__icone" src="../Assets/Lupa.svg" alt="">
+
+                    <span>Dúvidas frequentes</span>
+
+                    <img class="atalho__seta" src="../Assets/Chevron.svg" alt="">
+                </a>
+            </div>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/MeuMeiNavBar/script.js"></script>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/FinanceiroNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Receitas</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="financeiro">
+        <header class="financeiro__topo">
+            <h1>Financeiro</h1>
+
+            <button class="financeiro__filtro" type="button" data-abrir-menu aria-label="Abrir menu">
+                <img src="../Assets/Filter.svg" alt="Filtrar lançamentos">
+            </button>
+        </header>
+
+        <div id="navbar"></div>
+
+        <section class="financeiro__envio">
+            <button class="envio">
+                <img src="../Assets/Upload.svg" alt="">
+                <span class="envio__texto">Carregar<br>imagem</span>
+            </button>
+        </section>
+
+        <section class="financeiro__instrucoes">
+            <h2>Instruções:</h2>
+
+            <ul class="instrucoes">
+                <li>Clicar a cima para subir seu arquivo</li>
+                <li>Selecione seu arquivo PDF ou IMG</li>
+                <li>Após selecionar clique em continuar</li>
+            </ul>
+
+            <button class="continuar">Continuar</button>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/FinanceiroNavBar/script.js"></script>
+
+</html>

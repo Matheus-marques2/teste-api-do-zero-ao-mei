@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+    display: center ;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 20px;
+    display: flex;
+}
+
+.img {
+    border: 0;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.tabs {
+    display: flex;
+    gap: 20px;
+    padding: 0 24px;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+}
+
+.tab{
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #888;
+    padding: 10px 0;
+}
+
+.tab.ativa {
+    color: #8b1a2b;
+    font-weight: 700;
+    border-bottom: 2px solid #8b1a2b;
+}
+
+.secao {
+    padding: 20px 24px 8px;
+}
+
+.secao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.secao-header h2 {
+    font-size: 14.32px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.ver-todas {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8b1a2b;
+    text-decoration: none;
+}
+
+.ver-todas {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8b1a2b;
+    text-decoration: none;
+}
+
+.curso-cards   {
+    display: flex;
+    background: #F4EFEB;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.curso-cards img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.curso-info {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.curso-info h3 {
+    overflow-wrap: break-word;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.curso-info p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.valor-tempo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600px;
+    color: #000000;
+}
+
+
+

@@ -1,0 +1,214 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.atividades {
+	padding: 31px 19px 0;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+/* Título da página + botão de filtro */
+.atividades__topo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.atividades__topo h1 {
+	font-size: 30.11px;
+	font-weight: 400;
+}
+
+.atividades__filtro {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-right: 16px;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.atividades__filtro img {
+	width: 35.12px;
+	height: 36px;
+}
+
+/* A navbar de abas sangra até as bordas, como as linhas divisórias do Figma */
+#navbar {
+	margin: 0 -19px;
+}
+
+.divisor {
+	height: 1px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 0 -19px;
+}
+
+/* Blocos entre os divisores */
+.atividades__lembretes {
+	padding: 22px 0 18px;
+}
+
+.atividades__mentorias {
+	padding: 30px 0 24px;
+}
+
+.atividades h2 {
+	font-size: 17.87px;
+	font-weight: 500;
+	margin-left: 6px;
+	margin-bottom: 18px;
+}
+
+/* Nome do grupo de lembretes (Atividades / Mentorias) */
+.grupo {
+	font-size: 17.33px;
+	font-weight: 500;
+	margin-left: 6px;
+	margin-bottom: 12px;
+	color: #5E5E5E;
+}
+
+/* Lembretes de atividades: dois cards lado a lado */
+.lembretes {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 29px;
+}
+
+.lembrete {
+	display: flex;
+	flex-direction: column;
+	min-height: 143px;
+	padding: 15px 12px;
+	border-radius: 16px;
+	background-color: #F4EFEB;
+	transition: 0.2s ease-in;
+}
+
+.lembrete:hover {
+	box-shadow: -2px 2px 7.7px rgba(0, 0, 0, 0.25);
+}
+
+.lembrete__nome {
+	font-size: 10.21px;
+	font-weight: 500;
+}
+
+.lembrete__hora {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 7px;
+	font-size: 15.66px;
+	font-weight: 500;
+}
+
+.lembrete__acao {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.lembrete__acao img {
+	width: 18px;
+	height: 18px;
+}
+
+.lembrete__detalhe {
+	font-size: 10.21px;
+	font-weight: 500;
+}
+
+.lembrete__detalhe + .lembrete__detalhe {
+	margin-top: 7px;
+}
+
+/* Etiqueta "Ativo" / "Desativado" no rodapé do card */
+.lembrete__estado {
+	align-self: center;
+	margin-top: auto;
+	padding: 2px 12px;
+	border-radius: 20px;
+	background-color: #8E292D;
+	font-size: 10.21px;
+	font-weight: 500;
+	color: #FFFFFF;
+}
+
+/* Lembretes de mentoria */
+.mentoria {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	min-height: 82px;
+	padding-right: 12px;
+	border-radius: 40px 16px 16px 40px;
+	background-color: #F4EFEB;
+	transition: 0.2s ease-in;
+}
+
+.mentoria:hover {
+	box-shadow: -2px 2px 7.7px rgba(0, 0, 0, 0.25);
+}
+
+.mentoria + .mentoria {
+	margin-top: 27px;
+}
+
+.mentoria__foto {
+	flex-shrink: 0;
+	width: 84px;
+	height: 84px;
+	margin-left: 2px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.mentoria__texto h4 {
+	font-size: 15.03px;
+	font-weight: 500;
+}
+
+.mentoria__autor {
+	font-size: 10.21px;
+	font-weight: 500;
+}
+
+.mentoria__quando {
+	display: flex;
+	align-items: baseline;
+	gap: 13px;
+	font-size: 10.21px;
+	font-weight: 500;
+}
+
+.mentoria__quando strong {
+	font-size: 15.66px;
+	font-weight: 500;
+}
+
+.mentoria__acao {
+	position: absolute;
+	right: 13px;
+	bottom: 13px;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 0;
+}
+
+.mentoria__acao img {
+	width: 20px;
+	height: 20px;
+}

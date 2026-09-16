@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.guias {
+	padding-bottom: 24px;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+.guias__lista {
+	margin: 18px 32px 0;
+}
+
+/* Cartão de guia */
+.guia {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	height: 78px;
+	padding: 0 18px;
+	border: 1px solid rgba(142, 41, 45, 0.15);
+	border-radius: 9.32px;
+	background-color: #F4EFEB;
+	box-shadow: 0 1.24px 4.95px rgba(0, 0, 0, 0.16);
+	transition: 0.2s ease-in;
+}
+
+.guia:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+
+.guia + .guia {
+	margin-top: 14px;
+}
+
+.guia__icone {
+	/* Caixa fixa: os SVGs têm proporções diferentes e não podem ser esticados */
+	flex: 0 0 52px;
+	height: 52px;
+	object-fit: scale-down;
+}
+
+.guia__texto h2 {
+	font-size: 12.41px;
+	font-weight: 600;
+	line-height: 1.05;
+	color: #8E292D;
+}
+
+.guia__texto p {
+	/* Largura vinda do Figma: mantém as quebras de linha do protótipo */
+	max-width: 198px;
+	margin-top: 3px;
+	font-size: 10.72px;
+	font-weight: 300;
+	line-height: 1.05;
+	color: #000000;
+}
+
+.guia__seta {
+	flex-shrink: 0;
+	width: 16px;
+	height: 16px;
+	margin-left: auto;
+}

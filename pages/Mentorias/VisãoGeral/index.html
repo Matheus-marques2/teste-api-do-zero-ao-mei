@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/MentoriasNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title> Visão geral </title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+
+    <main>
+
+        <section class="container-cursos">
+            <div class="cabecalho-cursos">
+                <h1>Cursos</h1>
+
+                <button class="img" type="button" data-abrir-menu aria-label="Abrir menu">
+                    <img src="../Assets/Filter.svg" alt="Icone de menu">
+                </button>
+            </div>
+
+            <div id="navbar"></div>
+
+            <!-- cards da mentoria -->
+            <div class="mentorias-disponiveis">
+
+                <div class="mentorias-texto">
+                    <h2>Mentorias disponiveis</h2>
+                    <p>Ver todos</p>
+                </div>
+
+                <div class="card-container-mentoria">
+
+                    <div class="card-mentoria">
+                        <img src="../Assets/professional-smiling-woman 1.png" alt="">
+                        <h2>Finanças para iniciantes</h2>
+                        <p>Com Fernada</p>
+                        <div class="card-icone">
+                            <i> <img class="icone" src="../Assets/Star.svg" alt="Icone estrela"> <span>4,8</span></i>
+                            <p>Online</p>
+                        </div>
+                    </div>
+
+                    <div class="card-mentoria">
+                        <img src="../Assets/modern-business-woman-portrait 1.png" alt="">
+                        <h2>Marketing que vende</h2>
+                        <p>Com Elena Gonçalves</p>
+                        <div class="card-icone">
+                            <i> <img class="icone" src="../Assets/Star.svg" alt="Icone estrela"> <span>4,8</span></i>
+                            <p>Online</p>
+                        </div>
+                    </div>
+
+                    <div class="card-mentoria">
+                        <img src="../Assets/smiling-man-in-blue 1.png" alt="">
+                        <h2>Organização e produtividade</h2>
+                        <p>Com Robson Gomes</p>
+                        <div class="card-icone">
+                            <i> <img class="icone" src="../Assets/Star.svg" alt="Icone estrela"> <span>4,8</span></i>
+                            <p>Online</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Cursos em destaque -->
+                <div class="curso-destaque">
+                    <div class="mentorias-texto">
+                        <h2>Curso em destaque</h2>
+                        <p>Ver todos</p>
+                    </div>
+
+                    <div class="container-destaque">
+                        <div class="card-destaque">
+                            <img src="../Assets/macbook-air-on-desk 1.png" alt="">
+                            <div class="info-curso">
+                                <h2>Como controlar suas finanças</h2>
+                                <p>Aprenda a ter controle total do seu dinheiro.</p>
+                                <span>20 Min</span>
+                            </div>
+                        </div>
+
+                        <div class="card-destaque">
+                            <img src="../Assets/creative-designers-desk 1.png" alt="">
+                            <div class="info-curso">
+
+                                <h2>Como controlar suas finanças</h2>
+                                <p>Aprenda a ter controle total do seu dinheiro.</p>
+                                <span>20 Min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+
+    <script src="../../../shared/components/MentoriasNavBar/script.js"></script>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="script.js"></script>
+
+</html>

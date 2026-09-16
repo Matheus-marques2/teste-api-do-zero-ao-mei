@@ -1,0 +1,175 @@
+Css/ style.css
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: space-between; /* Distribui os elementos verticalmente como no Figma */
+}
+
+/* Container do Logo */
+.logo-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.loginform {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+}
+
+.input-group {
+  margin-bottom: 14px;
+}
+
+/* Campos ajustados para bater com a imagem do Figma */
+.input-group input {
+  padding: 14px 18px;
+  border: 1px solid #e2e2e2;
+  border-radius: 17.05px; /* Bordas suaves como no Figma */
+  background-color: #fcfcfc;
+  font-size: 13px;
+  outline: none;
+  color: #333;
+}
+
+.input-group input::placeholder {
+  color: #b0b0b0;
+}
+
+/* Ajustado para alinhar à direita */
+.forgot-password {
+  width: 100%;
+  text-align: right; 
+  margin-top: 6px;
+  margin-bottom: 28px;
+}
+
+.forgot-password a {
+  font-size: 11px;
+  color: #333333;
+  text-decoration: underline;
+}
+
+/* Botão Entrar */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background-color: #83272c; /* Tom exato do vinho/bordô */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.social-login {
+  display: flex;
+  gap: 16px;
+  margin: 25px 0 15px 0;
+}
+
+.btn-social {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #eaeaea;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  font-size: 18px;
+}
+
+.btn-social.google { color: #ea4335; }
+.btn-social.facebook { color: #1877f2; }
+.btn-social.menu { 
+  background-color: #83272c; 
+  color: white; 
+  border: none;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e8e8e8;
+  margin-bottom: 12px;
+}
+
+.signup-link a {
+  font-size: 11px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-terms {
+  margin-top: 30px;
+  font-size: 9px;
+  color: #a0a0a0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.mensagem-form {
+  min-height: 16px;
+  margin: 4px 0 12px;
+  font-size: 12px;
+  color: #83272c;
+  text-align: center;
+}
+
+.mensagem-form--sucesso {
+  color: #2e7d32;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

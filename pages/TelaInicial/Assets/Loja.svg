@@ -1,0 +1,31 @@
+<svg width="200" height="190" viewBox="0 0 200 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- telhado -->
+  <rect x="14" y="0" width="172" height="14" rx="4" fill="#FFFFFF" />
+
+  <!-- toldo listrado com barra arredondada -->
+  <g fill="#FFFFFF">
+    <path d="M25 18h17l-3 34H12l13-34z M12 52h27a13.5 8 0 0 1-27 0z" />
+    <path d="M46 18h17l-1 34H43l3-34z M43 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M67 18h17v34H65l2-34z M65 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M88 18h17l1 34H87l1-34z M87 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M109 18h17l2 34h-19l0-34z M109 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M130 18h17l4 34h-19l-2-34z M132 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M151 18h17l6 34h-19l-4-34z M155 52h19a9.5 8 0 0 1-19 0z" />
+    <path d="M172 18h4l12 34h-14l-2-34z M178 52h10a9.5 8 0 0 1-10 0z" />
+  </g>
+
+  <!-- lateral esquerda da fachada -->
+  <rect x="14" y="60" width="7" height="96" fill="#FFFFFF" />
+
+  <!-- porta -->
+  <path d="M34 66h62v90H34V66zm7 7v76h48V73H41z" fill="#FFFFFF" />
+  <circle cx="83" cy="112" r="4" fill="#FFFFFF" />
+
+  <!-- vitrine -->
+  <path d="M114 66h76v66h-76V66zm7 7v52h62V73h-62z" fill="#FFFFFF" />
+  <rect x="150" y="78" width="6" height="40" rx="3" transform="rotate(45 150 78)" fill="#FFFFFF" />
+  <rect x="170" y="86" width="6" height="28" rx="3" transform="rotate(45 170 86)" fill="#FFFFFF" />
+
+  <!-- base -->
+  <rect x="6" y="160" width="188" height="18" rx="5" fill="#FFFFFF" />
+</svg>

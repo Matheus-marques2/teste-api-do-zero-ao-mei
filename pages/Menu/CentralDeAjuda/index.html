@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Central de Ajuda</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+    <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+    <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-btn" type="button" data-abrir-menu aria-label="Abrir menu">
+          <i data-lucide="chevrons-left"></i>
+        </button>
+        <h1>Central de ajuda</h1>
+      </header>
+
+      <!-- Greeting & Search -->
+      <section class="welcome-section">
+        <h2>
+          Como podemos ajudar você<br />hoje,
+          <span class="user-name">Evellyn</span>?
+        </h2>
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input
+            type="text"
+            placeholder="Qual é a sua dúvida?"
+            id="searchInput"
+          />
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="categories-section">
+        <h3>Categorias</h3>
+        <div class="grid">
+          <button class="card">
+            <i data-lucide="user"></i>
+            <span>Minha conta</span>
+          </button>
+          <button class="card">
+            <i data-lucide="wallet"></i>
+            <span>Financeiro</span>
+          </button>
+          <button class="card">
+            <i data-lucide="store"></i>
+            <span>Meu MEI</span>
+          </button>
+          <button class="card">
+            <i data-lucide="triangle-alert"></i>
+            <span>Probelmas</span>
+          </button>
+          <button class="card">
+            <i data-lucide="file-cog"></i>
+            <span>Assinaturas</span>
+          </button>
+          <button class="card">
+            <i data-lucide="settings"></i>
+            <span>Configurações</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section">
+        <h3>Perguntas frequentes</h3>
+        <div class="faq-list">
+          <a href="#" class="faq-item">
+            <span>Como emitir o DAS?</span>
+            <i data-lucide="chevron-right"></i>
+          </a>
+          <a href="#" class="faq-item">
+            <span>Como funciona o controle financeiro?</span>
+            <i data-lucide="chevron-right"></i>
+          </a>
+          <a href="#" class="faq-item">
+            <span>Como alterar minha senha?</span>
+            <i data-lucide="chevron-right"></i>
+          </a>
+          <a href="#" class="faq-item">
+            <span>Como funciona o Meu MEI?</span>
+            <i data-lucide="chevron-right"></i>
+          </a>
+          <a href="#" class="faq-item">
+            <span>Como falar com um especialista?</span>
+            <i data-lucide="chevron-right"></i>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Navbar global (rodapé) -->
+    <div id="navbar-global"></div>
+    <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+    <!-- Menu lateral (abre pelo « do topo) -->
+    <script src="../../../shared/components/Menu/script.js"></script>
+  </body>
+</html>

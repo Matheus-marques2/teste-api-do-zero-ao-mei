@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Do Zero ao MEI</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Ícones do FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <script src="../../../shared/scripts/api.js"></script>
+</head>
+<body>
+
+  <div class="login-container">
+
+    <div class="logo-container">
+      <img src="../../../shared/imagens/Group 5.png" alt="Do Zero ao MEI">
+    </div>
+
+    <h2 class="title">CADASTRO</h2>
+
+    <form id="cadastroForm">
+      <div class="input-group">
+        <input type="text" id="nome" placeholder="Nome completo" autocomplete="name" required>
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" placeholder="E-mail" autocomplete="email" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="senha" placeholder="Criar senha" autocomplete="new-password" minlength="6" required>
+      </div>
+      <div class="input-group">
+        <input type="password" id="confirmar-senha" placeholder="Confirme sua senha" autocomplete="new-password" minlength="6" required>
+      </div>
+
+      <p class="mensagem-form" id="cadastroMensagem" role="alert"></p>
+
+      <button type="submit" class="btn-primary">CRIAR CONTA</button>
+    </form>
+
+    <!-- Botões sociais corrigidos -->
+    <div class="social-login">
+      <button type="button" class="btn-social google">
+        <i class="fa-brands fa-google"></i>
+      </button>
+      <button type="button" class="btn-social facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </button>
+      <button type="button" class="btn-social menu">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+    </div>
+
+    <div class="signup-link">
+      <a href="../Login/index.html" id="linkLogin">Já tenho conta</a>
+    </div>
+    <script>document.getElementById("linkLogin").search = location.search;</script>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

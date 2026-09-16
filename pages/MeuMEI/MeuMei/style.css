@@ -1,0 +1,277 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.meu-mei {
+	padding-bottom: 24px;
+	font-family: poppins, sans-serif;
+	line-height: 1.5;
+	color: #000000;
+}
+
+/* Blocos com padding lateral próprio: a navbar sangra até as bordas */
+.negocio,
+.obrigacoes,
+.guia {
+	margin: 0 29px;
+}
+
+/* Cartão do negócio */
+.negocio {
+	position: relative;
+	display: flex;
+	gap: 16px;
+	height: 151px;
+	margin-top: 18px;
+	padding: 13px 16px 0;
+	border: 1px solid rgba(142, 41, 45, 0.15);
+	border-radius: 7.53px;
+	background-color: #F4EFEB;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+}
+
+.negocio__avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 72.45px;
+	height: 72.45px;
+	border-radius: 50%;
+	background-color: #FFFFFF;
+}
+
+.negocio__avatar img {
+	width: 45px;
+	height: 41.8px;
+}
+
+.negocio__dados {
+	padding-top: 2px;
+}
+
+.negocio__dados h2 {
+	font-size: 13.17px;
+	font-weight: 600;
+}
+
+.negocio__dados p {
+	font-size: 13.17px;
+	font-weight: 300;
+}
+
+.negocio__situacao {
+	font-size: 14px;
+}
+
+/* O ponto verde antes do status vem do ::before para não virar imagem */
+.negocio__situacao span {
+	font-weight: 500;
+	color: #158606;
+}
+
+.negocio__situacao span::before {
+	content: "●";
+	margin-right: 4px;
+}
+
+.negocio__acao {
+	position: absolute;
+	left: 19px;
+	bottom: 17px;
+	width: 292.6px;
+	padding: 3px 0;
+	border: 0.94px solid #8E292D;
+	border-radius: 7.53px;
+	background-color: #FDFDFD;
+	font-size: 13.17px;
+	font-weight: 400;
+	color: #8E292D;
+	text-align: center;
+	transition: 0.2s ease-in;
+}
+
+.negocio__acao:hover {
+	background-color: #8E292D;
+	color: #FDFDFD;
+}
+
+/* Título das seções + link "Ver todos" */
+.secao {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.meu-mei h2 {
+	font-size: 15.3px;
+	font-weight: 500;
+}
+
+.secao a {
+	font-size: 12.08px;
+	font-weight: 600;
+	color: #8E292D;
+	transition: 0.2s ease-in;
+}
+
+.secao a:hover {
+	opacity: 0.75;
+}
+
+.obrigacoes {
+	margin-top: 18px;
+}
+
+.obrigacoes__lista {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 9px;
+	margin-top: 9px;
+}
+
+/* Cartão resumido de obrigação */
+.resumo {
+	display: flex;
+	flex-direction: column;
+	height: 160px;
+	padding: 12px 11px 10px;
+	border: 1px solid rgba(142, 41, 45, 0.15);
+	border-radius: 7.53px;
+	background-color: #F4EFEB;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+	transition: 0.2s ease-in;
+}
+
+.resumo:hover {
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+}
+
+.resumo__topo {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+}
+
+.resumo__icone {
+	/* Caixa fixa: os SVGs têm proporções diferentes e não podem ser esticados */
+	width: 33px;
+	height: 33px;
+	object-fit: contain;
+}
+
+.resumo h3 {
+	margin-top: 7px;
+	font-size: 13.17px;
+	font-weight: 500;
+}
+
+.resumo__sigla {
+	font-size: 9.5px;
+	font-weight: 400;
+}
+
+.resumo__rotulo {
+	/* Empurra o bloco final para a base do cartão, como no Figma */
+	margin-top: auto;
+	font-size: 8.65px;
+	font-weight: 300;
+	line-height: 1.5;
+}
+
+.resumo__data {
+	font-size: 13.17px;
+	font-weight: 500;
+}
+
+.resumo__acao {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 11px;
+	font-size: 12.08px;
+	font-weight: 600;
+	color: #8E292D;
+	transition: 0.2s ease-in;
+}
+
+.resumo__acao:hover {
+	opacity: 0.75;
+}
+
+.resumo__acao img {
+	width: 12px;
+	height: 12px;
+}
+
+/* Selos de situação */
+.selo {
+	padding: 0 8px;
+	border-radius: 9.89px;
+	font-size: 8.86px;
+	font-weight: 600;
+	line-height: 15px;
+}
+
+.selo--ok {
+	border: 1px solid #158606;
+	background-color: rgba(21, 134, 6, 0.19);
+	color: #158606;
+}
+
+.selo--atencao {
+	border: 1px solid #FFC300;
+	background-color: rgba(255, 174, 0, 0.19);
+	color: #E49C00;
+}
+
+/* Guia do MEI */
+.guia {
+	margin-top: 20px;
+}
+
+.guia__grade {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 9px;
+	margin-top: 9px;
+}
+
+.atalho {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	height: 59.42px;
+	padding: 0 11px;
+	border: 1px solid rgba(142, 41, 45, 0.15);
+	border-radius: 7.53px;
+	background-color: #F4EFEB;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+	transition: 0.2s ease-in;
+}
+
+.atalho:hover {
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+}
+
+.atalho__icone {
+	flex: 0 0 34px;
+	height: 34px;
+	object-fit: contain;
+}
+
+.atalho span {
+	font-size: 12.41px;
+	font-weight: 300;
+	line-height: 1.05;
+	color: #000000;
+}
+
+.atalho__seta {
+	flex-shrink: 0;
+	width: 14px;
+	height: 14px;
+	margin-left: auto;
+}

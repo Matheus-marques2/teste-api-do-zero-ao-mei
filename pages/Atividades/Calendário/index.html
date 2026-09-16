@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../../../shared/scripts/api.js" data-protegida></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../shared/styles/reset.css">
+    <link rel="stylesheet" href="../../../shared/styles/global.css">
+    <link rel="stylesheet" href="../../../shared/components/AtividadesNavBar/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Calendário</title>
+  <link rel="stylesheet" href="../../../shared/components/NavBarGlobal/style.css" />
+  <link rel="stylesheet" href="../../../shared/styles/transicoes.css" />
+  <link rel="stylesheet" href="../../../shared/components/Menu/style.css" />
+</head>
+
+<body>
+    <main class="atividades">
+        <header class="atividades__topo">
+            <h1>Atividades</h1>
+
+            <button class="atividades__filtro" type="button" data-abrir-menu aria-label="Abrir menu">
+                <img src="../Assets/Filter.svg" alt="Filtrar atividades">
+            </button>
+        </header>
+
+        <div id="navbar"></div>
+
+        <section class="atividades__calendario">
+            <h2>Calendário atual</h2>
+
+            <article class="mes">
+                <header class="mes__topo">
+                    <h3 class="mes__nome">Agosto</h3>
+
+                    <button class="mes__seguinte">
+                        <img src="../Assets/Arrow.svg" alt="Ver o próximo mês">
+                    </button>
+                </header>
+
+                <table class="mes__dias">
+                    <thead>
+                        <tr>
+                            <th class="mes__fds">D</th>
+                            <th>S</th>
+                            <th>T</th>
+                            <th>Q</th>
+                            <th>Q</th>
+                            <th>S</th>
+                            <th class="mes__fds">S</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><span>1</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>2</span></td>
+                            <td><span>3</span></td>
+                            <td><span>4</span></td>
+                            <td><span>5</span></td>
+                            <td><span>6</span></td>
+                            <td><span>7</span></td>
+                            <td><span>8</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>9</span></td>
+                            <td><span>10</span></td>
+                            <td><span>11</span></td>
+                            <td class="mes__dia--marcado mes__dia--hoje"><span>12</span></td>
+                            <td class="mes__dia--marcado"><span>13</span></td>
+                            <td class="mes__dia--marcado"><span>14</span></td>
+                            <td><span>15</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>16</span></td>
+                            <td><span>17</span></td>
+                            <td><span>18</span></td>
+                            <td><span>19</span></td>
+                            <td><span>20</span></td>
+                            <td><span>21</span></td>
+                            <td><span>22</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>23</span></td>
+                            <td><span>24</span></td>
+                            <td><span>25</span></td>
+                            <td><span>26</span></td>
+                            <td><span>27</span></td>
+                            <td><span>28</span></td>
+                            <td><span>29</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>30</span></td>
+                            <td><span>31</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+        <section class="atividades__datas">
+            <h2 class="atividades__datas-titulo">Marcar Data</h2>
+
+            <article class="data">
+                <div class="data__texto">
+                    <h3>Dia 12 de Agosto</h3>
+                    <p>Reunião com a equipe de design as 18:30</p>
+                </div>
+
+                <button class="data__acao">
+                    <img src="../Assets/Edit.svg" alt="Editar data marcada">
+                </button>
+            </article>
+        </section>
+    </main>
+
+  <!-- Navbar global (rodapé) -->
+  <div id="navbar-global"></div>
+  <script src="../../../shared/components/NavBarGlobal/script.js"></script>
+
+  <!-- Menu lateral (abre pelo ícone de filtro) -->
+  <script src="../../../shared/components/Menu/script.js"></script>
+</body>
+
+<script src="../../../shared/components/AtividadesNavBar/script.js"></script>
+
+</html>
